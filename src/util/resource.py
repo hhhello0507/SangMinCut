@@ -1,7 +1,7 @@
 import pygame
 from src.util.constants import *
 
-IMG_BACKGROUND = pygame.image.load("../res/image/sangmin2.png")
+IMG_BACKGROUND = pygame.image.load("../res/image/background.jpg")
 IMG_BACKGROUND = pygame.transform.scale(IMG_BACKGROUND, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 IMG_PLAYER = pygame.image.load("../res/image/sangmin2.png")

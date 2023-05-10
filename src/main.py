@@ -32,7 +32,6 @@ font = 0
 mainStartText = 0
 
 
-
 def init():
     global screen, font, mainStartText
     pygame.init()
@@ -123,15 +122,17 @@ def manageSangMin():
 
 
 def createSangMin():
-    global sangMinLoadTime, sangMinStartTime
+    global sangMinLoadTime, sangMinStartTime, xPos, yPos
     nowTime = time.time()
     if nowTime - sangMinStartTime >= sangMinLoadTime:
         sangMinLoadTime = random.uniform(0.4, 0.7)
         sangMinStartTime = time.time()
-        (xPos, yPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
-        sangMin = SangMin(xPos + SANGMIN_WIDTH / 2, yPos + SANGMIN_HEIGHT / 2)
+        # TODO: 플레이어로부터 n거리 만큼 떨어지도록
+        (sangMinXPos, sangMinYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
+        while ((sangMinXPos - xPos) ** 2 + (sangMinYPos - yPos) ** 2) ** 0.5 < 300:
+            (sangMinXPos, sangMinYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
+        sangMin = SangMin(sangMinXPos + SANGMIN_WIDTH / 2, sangMinYPos + SANGMIN_HEIGHT / 2)
         sangMinList.append(sangMin)
-
 
 def main():
     init()
