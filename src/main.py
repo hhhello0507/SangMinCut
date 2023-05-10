@@ -1,17 +1,18 @@
 import pygame
-from src.util.image import *
+from src.util.resource import *
 from src.util.utils import *
 from src.bullet import *
 from src.sangmin import *
 import random
 import time
 
+clock = pygame.time.Clock()
+
 isPlaying = True
 
 display = pygame.display
 
-clock = pygame.time.Clock()
-
+playerHp = 10
 xPos = (SCREEN_WIDTH - PLAYER_WIDTH) / 2
 yPos = (SCREEN_HEIGHT - PLAYER_HEIGHT) / 2
 screen = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -21,7 +22,7 @@ sangMinList = []
 
 sangMinLoadTime = 0
 sangMinStartTime = time.time()
-sangMinDeltaTime = 0
+
 
 def init():
     global screen
@@ -37,6 +38,7 @@ def draw():
     for sangMin in sangMinList:
         screen.blit(IMG_SANGMIN, (sangMin.xPos, sangMin.yPos))
     display.update()
+
 
 def move():
     global xPos, yPos
@@ -74,8 +76,16 @@ def createBullet():
         if event.type == pygame.QUIT:
             isPlaying = False
 def manageSangMin():
+    global playerHp
     for (idx, sangMin) in enumerate(sangMinList):
         if sangMin.isActive:
+            if sangMin.objectRect.colliderect(pygame.Rect(xPos, yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
+                playerHp -= 1
+                sangMinList.pop(idx)
+                print(playerHp)
+            for (bulletIdx, bullet) in enumerate(bulletList):
+                if sangMin.objectRect.colliderect(bullet.objectRect):
+                    sangMinList.pop(idx)
             sangMin.calcMove(xPos + PLAYER_WIDTH / 2, yPos + PLAYER_HEIGHT / 2, SANGMIN_SPEED)
             sangMin.move()
         else:
@@ -85,13 +95,11 @@ def createSangMin():
     global sangMinLoadTime, sangMinStartTime
     nowTime = time.time()
     if nowTime - sangMinStartTime >= sangMinLoadTime:
-        sangMinLoadTime = random.uniform(0, 0.01)
+        sangMinLoadTime = random.uniform(0.4, 0.7)
         sangMinStartTime = time.time()
         (xPos, yPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
         sangMin = SangMin(xPos + SANGMIN_WIDTH / 2, yPos + SANGMIN_HEIGHT / 2)
         sangMinList.append(sangMin)
-
-    # print(sangMinLoadTime)
 
 def main():
     init()
