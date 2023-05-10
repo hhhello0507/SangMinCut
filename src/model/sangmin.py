@@ -1,5 +1,4 @@
-from moveObject import *
-from src.util.utils import *
+from src.model.moveObject import *
 from src.util.constants import *
 
 class SangMin(MoveObject):

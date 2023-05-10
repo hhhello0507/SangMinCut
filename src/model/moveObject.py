@@ -3,6 +3,7 @@ import pygame
 from src.util.constants import *
 from src.util.utils import *
 
+
 class MoveObject:
     def __init__(self, xPos, yPos, xMove, yMove, isActive, width, height):
         self.xPos = xPos
@@ -22,6 +23,7 @@ class MoveObject:
             self.objectRect = pygame.Rect(self.xPos, self.yPos, self.width, self.height)
         else:
             self.isActive = False
+
     def calcMove(self, xPos, yPos, speed):
         (self.xMove, self.yMove) = normalized(xPos - self.xPos, yPos - self.yPos)
         self.xMove *= speed
