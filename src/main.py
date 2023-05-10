@@ -1,9 +1,10 @@
 import pygame
 from src.util.image import *
-from src.util.constants import *
 from src.util.utils import *
 from src.bullet import *
+from src.sangmin import *
 import random
+import time
 
 isPlaying = True
 
@@ -16,6 +17,11 @@ yPos = (SCREEN_HEIGHT - PLAYER_HEIGHT) / 2
 screen = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 bulletList = []
+sangMinList = []
+
+sangMinLoadTime = 0
+sangMinStartTime = time.time()
+sangMinDeltaTime = 0
 
 def init():
     global screen
@@ -28,39 +34,66 @@ def draw():
     screen.blit(IMG_PLAYER, (xPos, yPos))
     for bullet in bulletList:
         screen.blit(IMG_BULLET, (bullet.xPos, bullet.yPos))
+    for sangMin in sangMinList:
+        screen.blit(IMG_BULLET, (sangMin.xPos, sangMin.yPos))
     display.update()
+
+def move():
+    global xPos, yPos
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+        if 0 <= xPos - PLAYER_SPEED <= SCREEN_WIDTH:
+            xPos -= PLAYER_SPEED
+    if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+        if 0 <= xPos + PLAYER_SPEED <= SCREEN_WIDTH - PLAYER_WIDTH:
+            xPos += PLAYER_SPEED
+    if keys[pygame.K_UP] or keys[pygame.K_w]:
+        if 0 <= yPos - PLAYER_SPEED <= SCREEN_HEIGHT:
+            yPos -= PLAYER_SPEED
+    if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+        if 0 <= yPos + PLAYER_SPEED <= SCREEN_HEIGHT - PLAYER_HEIGHT:
+            yPos += PLAYER_SPEED
+def manageBullet():
+    for (idx, bullet) in enumerate(bulletList):
+        if bullet.isActive:
+            bullet.move()
+        else:
+            bulletList.pop(idx)
+
+def createBullet():
+    global isPlaying
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            (xMousePos, yMousePos) = pygame.mouse.get_pos()
+            (normalizedXPos, normalizedYPos) = normalized(xPos + PLAYER_WIDTH / 2 - xMousePos,
+                                                          yPos + PLAYER_HEIGHT / 2 - yMousePos)
+            bullet = Bullet(xPos + PLAYER_WIDTH / 2, yPos + PLAYER_HEIGHT / 2, -normalizedXPos * BULLET_SPEED,
+                            -normalizedYPos * BULLET_SPEED)
+            bulletList.append(bullet)
+        if event.type == pygame.QUIT:
+            isPlaying = False
+
+def createSangMin():
+    global sangMinLoadTime, sangMinStartTime
+    nowTime = time.time()
+    if nowTime - sangMinStartTime >= sangMinLoadTime:
+        sangMinLoadTime = random.uniform(1, 3)
+        sangMinStartTime = time.time()
+        (xPos, yPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
+        sangMin = SangMin(xPos, yPos, 0, 0)
+        sangMinList.append(sangMin)
+
+    print(sangMinLoadTime)
+
 
 
 def main():
-    global isPlaying, xPos, yPos
     init()
     while isPlaying:
-        for (idx, bullet) in enumerate(bulletList):
-            if bullet.isActive:
-                bullet.move()
-            else:
-                bulletList.pop(idx)
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                (xMousePos, yMousePos) = pygame.mouse.get_pos()
-                (normalizedXPos, normalizedYPos) = normalized(xPos + PLAYER_WIDTH / 2 - xMousePos, yPos + PLAYER_HEIGHT / 2 - yMousePos)
-                bullet = Bullet(xPos + PLAYER_WIDTH / 2, yPos + PLAYER_HEIGHT / 2, -normalizedXPos * BULLET_SPEED, -normalizedYPos * BULLET_SPEED)
-                bulletList.append(bullet)
-            if event.type == pygame.QUIT:
-                isPlaying = False
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            if 0 <= xPos - PLAYER_SPEED <= SCREEN_WIDTH:
-                xPos -= PLAYER_SPEED
-        if keys[pygame.K_RIGHT]:
-            if 0 <= xPos + PLAYER_SPEED <= SCREEN_WIDTH - PLAYER_WIDTH:
-                xPos += PLAYER_SPEED
-        if keys[pygame.K_UP]:
-            if 0 <= yPos - PLAYER_SPEED <= SCREEN_HEIGHT:
-                yPos -= PLAYER_SPEED
-        if keys[pygame.K_DOWN]:
-            if 0 <= yPos + PLAYER_SPEED <= SCREEN_HEIGHT - PLAYER_HEIGHT:
-                yPos += PLAYER_SPEED
+        manageBullet()
+        createBullet()
+        createSangMin()
+        move()
         draw()
     pygame.quit()
 

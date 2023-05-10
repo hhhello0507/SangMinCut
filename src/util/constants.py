@@ -1,8 +1,7 @@
-# screen setting
+# setting
 SCREEN_WIDTH = 1440
 SCREEN_HEIGHT = 960
 
-# time
 DEFAULT_FRAME = 60
 
 # in game

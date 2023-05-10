@@ -1,13 +1,13 @@
 from moveObject import *
 
 
-class Bullet(MoveObject):
+class SangMin(MoveObject):
     def __init__(self, xPos, yPos, xMove, yMove):
         super().__init__(xPos, yPos, xMove, yMove, True, BULLET_WIDTH, BULLET_HEIGHT)
 
     def move(self):
-        if -self.width <= self.xPos <= SCREEN_WIDTH + self.width and -self.height <= self.yPos <= SCREEN_HEIGHT + self.height:
-            # print(self.xPos, self.yPos)
+        if -BULLET_WIDTH <= self.xPos <= SCREEN_WIDTH + BULLET_WIDTH and -BULLET_HEIGHT <= self.yPos <= SCREEN_HEIGHT + BULLET_HEIGHT:
+            print(self.xPos, self.yPos)
             self.xPos += self.xMove
             self.yPos += self.yMove
         else:
