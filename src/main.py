@@ -35,7 +35,7 @@ def draw():
     for bullet in bulletList:
         screen.blit(IMG_BULLET, (bullet.xPos, bullet.yPos))
     for sangMin in sangMinList:
-        screen.blit(IMG_BULLET, (sangMin.xPos, sangMin.yPos))
+        screen.blit(IMG_SANGMIN, (sangMin.xPos, sangMin.yPos))
     display.update()
 
 def move():
@@ -53,6 +53,7 @@ def move():
     if keys[pygame.K_DOWN] or keys[pygame.K_s]:
         if 0 <= yPos + PLAYER_SPEED <= SCREEN_HEIGHT - PLAYER_HEIGHT:
             yPos += PLAYER_SPEED
+
 def manageBullet():
     for (idx, bullet) in enumerate(bulletList):
         if bullet.isActive:
@@ -72,26 +73,32 @@ def createBullet():
             bulletList.append(bullet)
         if event.type == pygame.QUIT:
             isPlaying = False
+def manageSangMin():
+    for (idx, sangMin) in enumerate(sangMinList):
+        if sangMin.isActive:
+            sangMin.calcMove(xPos + PLAYER_WIDTH / 2, yPos + PLAYER_HEIGHT / 2, SANGMIN_SPEED)
+            sangMin.move()
+        else:
+            sangMinList.pop(idx)
 
 def createSangMin():
     global sangMinLoadTime, sangMinStartTime
     nowTime = time.time()
     if nowTime - sangMinStartTime >= sangMinLoadTime:
-        sangMinLoadTime = random.uniform(1, 3)
+        sangMinLoadTime = random.uniform(0, 0.01)
         sangMinStartTime = time.time()
         (xPos, yPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
-        sangMin = SangMin(xPos, yPos, 0, 0)
+        sangMin = SangMin(xPos + SANGMIN_WIDTH / 2, yPos + SANGMIN_HEIGHT / 2)
         sangMinList.append(sangMin)
 
-    print(sangMinLoadTime)
-
-
+    # print(sangMinLoadTime)
 
 def main():
     init()
     while isPlaying:
         manageBullet()
         createBullet()
+        manageSangMin()
         createSangMin()
         move()
         draw()
