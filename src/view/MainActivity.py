@@ -29,8 +29,6 @@ class MainAcitivty:
                     LifeManager.isMain = False
                     LifeManager.isPlaying = True
                     LifeManager.isPause = False
-            if event.type == pygame.QUIT:
-                exit(0)
 
 
     def startMain(self):

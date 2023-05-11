@@ -3,6 +3,7 @@ class LifeManager:
     isPlaying = False
     isPause = False
     isSetting = False
+    isGameOver = False
     def printStatus(self):
         print(f"""
         

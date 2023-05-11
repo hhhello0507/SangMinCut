@@ -1,3 +1,5 @@
+import pygame
+
 from src.entity.Bullet import *
 from src.manager.ClockManager import *
 from src.view.SettingFragment import *
@@ -58,6 +60,8 @@ class GameActivity:
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             if Player.yPos + PLAYER_SPEED <= SCREEN_HEIGHT - PLAYER_HEIGHT:
                 Player.yPos += PLAYER_SPEED * deltaTime
+        if keys[pygame.K_SPACE]:
+            self.createBullet(self)
     def startGame(self):
         while LifeManager.isPlaying:
             while not LifeManager.isPause:
