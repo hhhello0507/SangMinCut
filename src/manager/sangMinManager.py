@@ -1,8 +1,16 @@
 import pygame
 from src.entity.player import *
 from src.manager.bulletManager import *
+from src.entity.sangmin import *
+import time
+import random
+
+
 class SangMinManager:
+    sangMinLoadTime = 0
+    sangMinStartTime = time.time()
     sangMinList = []
+
     def manageSangMin(self):
         activeSangMinList = []
         for (idx, sangMin) in enumerate(self.sangMinList):
@@ -20,3 +28,14 @@ class SangMinManager:
             if sangMin.isActive:
                 activeSangMinList.append(sangMin)
         self.sangMinList = activeSangMinList
+
+    def createSangMin(self):
+        nowTime = time.time()
+        if nowTime - self.sangMinStartTime >= self.sangMinLoadTime:
+            self.sangMinLoadTime = random.uniform(0.4, 0.7)
+            self.sangMinStartTime = time.time()
+            (sangMinXPos, sangMinYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
+            while ((sangMinXPos - Player.xPos) ** 2 + (sangMinYPos - Player.yPos) ** 2) ** 0.5 < 300:
+                (sangMinXPos, sangMinYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
+            sangMin = SangMin(sangMinXPos + SANGMIN_WIDTH / 2, sangMinYPos + SANGMIN_HEIGHT / 2)
+            SangMinManager.sangMinList.append(sangMin)

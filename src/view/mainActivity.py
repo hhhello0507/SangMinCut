@@ -2,9 +2,8 @@ import pygame
 
 from src.info.lifeInfo import *
 from src.draw.drawMain import *
-from src.draw.drawScene import *
+from src.draw.drawGame import *
 from src.info.drawInfo import *
-
 
 def initPygame():
     pygame.init()
@@ -12,7 +11,7 @@ def initPygame():
 
 
 # view
-def onClickStartButton():
+def onMouseClick():
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             (xMousePos, yMousePos) = pygame.mouse.get_pos()
@@ -23,8 +22,16 @@ def onClickStartButton():
             exit(0)
 
 
-def mainOnStart():
+def startMain():
+    # init
     initPygame()
-    drawMain()
+
     while LifeInfo.isMain:
-        onClickStartButton()
+        # event
+        onMouseClick()
+
+        # manager
+        # pass
+
+        # draw
+        drawMain()
