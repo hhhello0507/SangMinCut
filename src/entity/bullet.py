@@ -1,4 +1,4 @@
-from src.model.moveObject import *
+from src.entity.moveObject import *
 
 
 class Bullet(MoveObject):

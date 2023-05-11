@@ -1,3 +1,6 @@
-from src.view.mainContainer import *
+from src.view.mainActivity import *
+from src.view.gameActivity import *
 
-main()
+while True:
+    mainOnStart()
+    gameStart()

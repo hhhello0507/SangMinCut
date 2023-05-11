@@ -1,9 +1,17 @@
+from src.info.drawInfo import *
+from src.util.resource import *
+from src.entity.player import *
+from src.view.mainActivity import *
+from src.manager.bulletManager import *
+from src.manager.sangMinManager import *
+from src.entity.player import *
+
 def drawScene():
-    screen.blit(IMG_BACKGROUND, (0, 0))
-    screen.blit(IMG_PLAYER, (xPos, yPos))
-    screen.blit(IMG_SETTING, (settingButton.xPos, settingButton.yPos))
-    for bullet in bulletList:
-        screen.blit(IMG_BULLET, (bullet.xPos, bullet.yPos))
-    for sangMin in sangMinList:
-        screen.blit(IMG_SANGMIN, (sangMin.xPos, sangMin.yPos))
-    display.update()
+    DrawInfo.screen.blit(IMG_BACKGROUND, (0, 0))
+    DrawInfo.screen.blit(IMG_PLAYER, (Player.xPos, Player.yPos))
+    DrawInfo.screen.blit(IMG_SETTING, (DrawInfo.settingButton.xPos, DrawInfo.settingButton.yPos))
+    for bullet in BulletManager.bulletList:
+        DrawInfo.screen.blit(IMG_BULLET, (bullet.xPos, bullet.yPos))
+    for sangMin in SangMinManager.sangMinList:
+        DrawInfo.screen.blit(IMG_SANGMIN, (sangMin.xPos, sangMin.yPos))
+    DrawInfo.display.update()

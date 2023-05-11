@@ -1,4 +1,5 @@
-isMain = True
-isPlaying = False
-isPause = False
-isSetting = False
+class LifeInfo:
+    isMain = True
+    isPlaying = False
+    isPause = False
+    isSetting = False

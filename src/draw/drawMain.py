@@ -1,6 +1,8 @@
 from src.info.drawInfo import *
 from src.util.resource import *
+
+
 def drawMain():
-    screen.blit(IMG_BUTTON, (startButton.xPos, startButton.yPos))
-    screen.blit(mainStartText, (startButton.xPos + 40, startButton.yPos + 20))
-    display.update()
+    DrawInfo.screen.blit(IMG_BUTTON, (DrawInfo.startButton.xPos, DrawInfo.startButton.yPos))
+    DrawInfo.screen.blit(DrawInfo.mainStartText, (DrawInfo.startButton.xPos + 40, DrawInfo.startButton.yPos + 20))
+    DrawInfo.display.update()
