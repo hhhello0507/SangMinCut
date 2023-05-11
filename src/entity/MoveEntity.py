@@ -4,7 +4,7 @@ from src.util.constants import *
 from src.util.utils import *
 
 
-class MoveObject:
+class MoveEntity:
     def __init__(self, xPos, yPos, xMove, yMove, isActive, width, height):
         self.xPos = xPos
         self.yPos = yPos

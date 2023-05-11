@@ -1,7 +1,7 @@
 import pygame
-from src.entity.player import *
-from src.manager.bulletManager import *
-from src.entity.sangmin import *
+from src.entity.Player import *
+from src.manager.BulletManager import *
+from src.entity.Sangmin import *
 import time
 import random
 

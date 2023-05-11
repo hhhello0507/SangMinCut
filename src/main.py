@@ -1,7 +1,7 @@
-from src.view.mainActivity import *
-from src.view.gameActivity import *
-
+from src.view.MainActivity import *
+from src.view.GameActivity import *
 
 while True:
+    LifeManager.printStatus(LifeManager)
     MainAcitivty.startMain(MainAcitivty)
     GameActivity.startGame(GameActivity)

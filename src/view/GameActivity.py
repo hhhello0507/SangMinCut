@@ -1,12 +1,10 @@
-from src.entity.bullet import *
-from src.info.clockInfo import *
-from src.view.settingFragment import *
-from src.manager.drawManager import *
-from src.manager.bulletManager import *
-from src.manager.sangMinManager import *
-from src.info.drawInfo import *
-from src.entity.player import *
-
+from src.entity.Bullet import *
+from src.manager.ClockManager import *
+from src.view.SettingFragment import *
+from src.manager.DrawManager import *
+from src.manager.PlayerManager import *
+from src.manager.DrawManager import *
+from src.entity.Player import *
 
 # TODO: 세팅창 그리기
 # TODO: SOUND ON/OFF, CLOSE - 나가기, BACK - 뒤로가기
@@ -38,15 +36,15 @@ class GameActivity:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (xMousePos, yMousePos) = pygame.mouse.get_pos()
                 self.createBullet(self)
-                if DrawInfo.settingButton.xPos <= xMousePos <= DrawInfo.settingButton.xPos + DrawInfo.settingButton.width and DrawInfo.settingButton.yPos <= yMousePos <= DrawInfo.settingButton.yPos + DrawInfo.settingButton.height:
-                    LifeInfo.isPause = True
-                    LifeInfo.isSetting = True
+                if DrawManager.settingButton.xPos <= xMousePos <= DrawManager.settingButton.xPos + DrawManager.settingButton.width and DrawManager.settingButton.yPos <= yMousePos <= DrawManager.settingButton.yPos + DrawManager.settingButton.height:
+                    LifeManager.isPause = True
+                    LifeManager.isSetting = True
                     settingFragment()
 
 
     def onKeyClick(self):
         # move
-        deltaTime = clock.tick(60)
+        deltaTime = ClockManager.clock.tick(60)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             if 0 <= Player.xPos - PLAYER_SPEED:
@@ -61,8 +59,8 @@ class GameActivity:
             if Player.yPos + PLAYER_SPEED <= SCREEN_HEIGHT - PLAYER_HEIGHT:
                 Player.yPos += PLAYER_SPEED * deltaTime
     def startGame(self):
-        while LifeInfo.isPlaying:
-            while not LifeInfo.isPause:
+        while LifeManager.isPlaying:
+            while not LifeManager.isPause:
                 # event
                 self.onKeyClick(self)
                 self.onMouseClick(self)
@@ -70,7 +68,10 @@ class GameActivity:
                 # manage
                 BulletManager.manageBullet(BulletManager)
                 SangMinManager.manageSangMin(SangMinManager)
+                PlayerManager.managePlayer(PlayerManager)
                 SangMinManager.createSangMin(SangMinManager)
 
                 # draw
+                DrawManager.updateHpText(DrawManager)
                 DrawManager.drawGame(DrawManager)
+                DrawManager.drawHPBar(DrawManager)

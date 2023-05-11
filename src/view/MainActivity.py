@@ -1,8 +1,6 @@
-import pygame
-
-from src.info.lifeInfo import *
-from src.manager.drawManager import *
-from src.info.drawInfo import *
+from src.manager.LifeManager import *
+from src.manager.DrawManager import *
+from src.manager.DrawManager import *
 
 class MainAcitivty:
     # singleton
@@ -18,17 +16,19 @@ class MainAcitivty:
             cls._init = True
     def initPygame(self):
         pygame.init()
-        DrawInfo.init(DrawInfo)
+        DrawManager.init(DrawManager)
 
 
     # view
     def onMouseClick(self):
+        # print("onMouse")
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (xMousePos, yMousePos) = pygame.mouse.get_pos()
-                if DrawInfo.startButton.xPos <= xMousePos <= DrawInfo.startButton.xPos + DrawInfo.startButton.width and DrawInfo.startButton.yPos <= yMousePos <= DrawInfo.startButton.yPos + DrawInfo.startButton.height:
-                    LifeInfo.isMain = False
-                    LifeInfo.isPlaying = True
+                if DrawManager.startButton.xPos <= xMousePos <= DrawManager.startButton.xPos + DrawManager.startButton.width and DrawManager.startButton.yPos <= yMousePos <= DrawManager.startButton.yPos + DrawManager.startButton.height:
+                    LifeManager.isMain = False
+                    LifeManager.isPlaying = True
+                    LifeManager.isPause = False
             if event.type == pygame.QUIT:
                 exit(0)
 
@@ -37,7 +37,7 @@ class MainAcitivty:
         # init
         self.initPygame(self)
 
-        while LifeInfo.isMain:
+        while LifeManager.isMain:
             # event
             self.onMouseClick(self)
 
