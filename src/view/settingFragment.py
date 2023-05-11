@@ -1,6 +1,5 @@
 from src.info.lifeInfo import *
-from src.info.drawInfo import *
-from src.draw.drawSetting import *
+from src.manager.drawManager import *
 import pygame
 
 def settingFragment():
@@ -15,4 +14,4 @@ def settingFragment():
                     LifeInfo.isPause = False
             if event.type == pygame.QUIT:
                 pygame.quit()
-        drawSetting()
+        DrawManager.drawSetting(DrawManager)

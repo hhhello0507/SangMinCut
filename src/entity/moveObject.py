@@ -28,4 +28,3 @@ class MoveObject:
         (self.xMove, self.yMove) = normalized(xPos - self.xPos, yPos - self.yPos)
         self.xMove *= speed
         self.yMove *= speed
-        # print(self.xMove, self.yMove)

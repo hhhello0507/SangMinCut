@@ -11,6 +11,16 @@ class SangMinManager:
     sangMinStartTime = time.time()
     sangMinList = []
 
+    def __new__(cls, *args, **kwargs):
+        if not hasattr(cls, "_instance"):
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __init__(self, data):
+        cls = type(self)
+        if not hasattr(cls, "_init"):
+            self.data = data
+            cls._init = True
     def manageSangMin(self):
         activeSangMinList = []
         for (idx, sangMin) in enumerate(self.sangMinList):

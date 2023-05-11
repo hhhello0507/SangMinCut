@@ -1,37 +1,48 @@
 import pygame
 
 from src.info.lifeInfo import *
-from src.draw.drawMain import *
-from src.draw.drawGame import *
+from src.manager.drawManager import *
 from src.info.drawInfo import *
 
-def initPygame():
-    pygame.init()
-    DrawInfo.init(DrawInfo)
+class MainAcitivty:
+    # singleton
+    def __new__(cls, *args, **kwargs):
+        if not hasattr(cls, "_instance"):
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __init__(self, data):
+        cls = type(self)
+        if not hasattr(cls, "_init"):
+            self.data = data
+            cls._init = True
+    def initPygame(self):
+        pygame.init()
+        DrawInfo.init(DrawInfo)
 
 
-# view
-def onMouseClick():
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            (xMousePos, yMousePos) = pygame.mouse.get_pos()
-            if DrawInfo.startButton.xPos <= xMousePos <= DrawInfo.startButton.xPos + DrawInfo.startButton.width and DrawInfo.startButton.yPos <= yMousePos <= DrawInfo.startButton.yPos + DrawInfo.startButton.height:
-                LifeInfo.isMain = False
-                LifeInfo.isPlaying = True
-        if event.type == pygame.QUIT:
-            exit(0)
+    # view
+    def onMouseClick(self):
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                (xMousePos, yMousePos) = pygame.mouse.get_pos()
+                if DrawInfo.startButton.xPos <= xMousePos <= DrawInfo.startButton.xPos + DrawInfo.startButton.width and DrawInfo.startButton.yPos <= yMousePos <= DrawInfo.startButton.yPos + DrawInfo.startButton.height:
+                    LifeInfo.isMain = False
+                    LifeInfo.isPlaying = True
+            if event.type == pygame.QUIT:
+                exit(0)
 
 
-def startMain():
-    # init
-    initPygame()
+    def startMain(self):
+        # init
+        self.initPygame(self)
 
-    while LifeInfo.isMain:
-        # event
-        onMouseClick()
+        while LifeInfo.isMain:
+            # event
+            self.onMouseClick(self)
 
-        # manager
-        # pass
+            # manager
+            # pass
 
-        # draw
-        drawMain()
+            # draw
+            DrawManager.drawMain(DrawManager)
