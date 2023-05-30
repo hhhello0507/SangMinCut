@@ -14,10 +14,9 @@ class DrawManager:
     backButton = Button(200, 0, BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT)
 
     display = None
-
     screen = None
-
     font = None
+
     mainStartText = None
     hpBarText = None
     hpText = None
