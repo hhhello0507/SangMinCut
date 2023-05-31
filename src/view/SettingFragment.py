@@ -14,4 +14,4 @@ def settingFragment():
                     LifeManager.isPause = False
             if event.type == pygame.QUIT:
                 pygame.quit()
-        DrawManager.drawSetting(DrawManager)
+        DrawManager.drawSettingMap(DrawManager)

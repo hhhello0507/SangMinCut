@@ -7,6 +7,7 @@ from src.manager.DrawManager import *
 from src.manager.PlayerManager import *
 from src.manager.DrawManager import *
 from src.entity.Player import *
+from src.manager.StageManager import *
 
 # TODO: 세팅창 그리기
 # TODO: SOUND ON/OFF, CLOSE - 나가기, BACK - 뒤로가기
@@ -74,8 +75,7 @@ class GameActivity:
                 SangMinManager.manageSangMin(SangMinManager)
                 PlayerManager.managePlayer(PlayerManager)
                 SangMinManager.createSangMin(SangMinManager)
+                StageManager.manageStage(StageManager)
 
                 # draw
-                DrawManager.updateHpText(DrawManager)
                 DrawManager.drawGame(DrawManager)
-                DrawManager.drawHPBar(DrawManager)

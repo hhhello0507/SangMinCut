@@ -1,5 +1,6 @@
 from src.manager.LifeManager import *
 from src.manager.SangMinManager import *
+from src.manager.StageManager import *
 class PlayerManager:
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, "_instance"):
@@ -16,9 +17,9 @@ class PlayerManager:
         if Player.playerHP == 0:
             LifeManager.isPause = True
             LifeManager.isPlaying = False
-            LifeManager.isMain = True
-            Player.xPos = PLAYER_INIT_XPOS
-            Player.yPos = PLAYER_INIT_YPOS
-            Player.playerHP = PLAYER_INIT_HP
+            LifeManager.isSetting = False
+            LifeManager.isGameOver = True
+            Player.initPlayer(Player)
             BulletManager.bulletList.clear()
             SangMinManager.sangMinList.clear()
+            StageManager.stage = 1

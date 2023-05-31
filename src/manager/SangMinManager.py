@@ -10,6 +10,8 @@ class SangMinManager:
     sangMinLoadTime = 0
     sangMinStartTime = time.time()
     sangMinList = []
+    sangMinCreateTime1 = 0.4
+    sangMinCreateTime2 = 0.7
 
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, "_instance"):
@@ -28,11 +30,13 @@ class SangMinManager:
             if sangMin.objectRect.colliderect(pygame.Rect(Player.xPos, Player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
                 sangMin.isActive = False
                 Player.playerHP -= 1
-                print(Player.playerHP)
+                print("PlayerHP - %d" %(Player.playerHP))
             # 총알과 충돌
             for (bulletIdx, bullet) in enumerate(BulletManager.bulletList):
                 if sangMin.objectRect.colliderect(bullet.objectRect):
                     sangMin.isActive = False
+                    Player.playerXP += 1
+                    print("playerXP - %d" %Player.playerXP)
             sangMin.calcMove(Player.xPos + PLAYER_WIDTH / 2, Player.yPos + PLAYER_HEIGHT / 2, SANGMIN_SPEED)
             sangMin.move()
             if sangMin.isActive:
@@ -42,9 +46,10 @@ class SangMinManager:
     def createSangMin(self):
         nowTime = time.time()
         if nowTime - self.sangMinStartTime >= self.sangMinLoadTime:
-            self.sangMinLoadTime = random.uniform(0.4, 0.7)
+            self.sangMinLoadTime = random.uniform(SANGMIN_CREATE_TIME_1, SANGMIN_CREATE_TIME_2)
             self.sangMinStartTime = time.time()
             (sangMinXPos, sangMinYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
+            # (플레이어 <-> 상민) 사이 일정한 거리 이상에서 생성되도록
             while ((sangMinXPos - Player.xPos) ** 2 + (sangMinYPos - Player.yPos) ** 2) ** 0.5 < 300:
                 (sangMinXPos, sangMinYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
             sangMin = SangMin(sangMinXPos + SANGMIN_WIDTH / 2, sangMinYPos + SANGMIN_HEIGHT / 2)

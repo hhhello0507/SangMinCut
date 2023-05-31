@@ -1,4 +1,7 @@
 from src.manager.LifeManager import *
+from src.manager.DrawManager import *
+
+
 class GameOverActivitiy:
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, "_instance"):
@@ -12,4 +15,4 @@ class GameOverActivitiy:
             cls._init = True
     def startGameOver(self):
         while LifeManager.isGameOver:
-            pass
+            DrawManager.drawGameOver(DrawManager)
