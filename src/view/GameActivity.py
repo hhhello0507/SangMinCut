@@ -9,9 +9,7 @@ from src.manager.DrawManager import *
 from src.entity.Player import *
 from src.manager.StageManager import *
 
-# TODO: 세팅창 그리기
 # TODO: SOUND ON/OFF, CLOSE - 나가기, BACK - 뒤로가기
-
 class GameActivity:
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, "_instance"):
@@ -45,8 +43,7 @@ class GameActivity:
                     settingFragment()
 
     def onKeyClick(self):
-        # move
-        deltaTime = ClockManager.clock.tick(60)
+        deltaTime = pygame.time.Clock().tick(60)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             if 0 <= Player.xPos - PLAYER_SPEED:
@@ -78,7 +75,6 @@ class GameActivity:
                 # event
                 self.onKeyClick(self)
                 self.onMouseClick(self)
-
                 # manage
                 BulletManager.manageBullet(BulletManager)
                 SangMinManager.manageSangMin(SangMinManager)

@@ -104,6 +104,7 @@ class DrawManager:
 
     # 임시 이미지
     def drawGameOverMap(self):
+        print(123)
         self.screen.blit(IMG_BUTTON, (self.startButton.xPos, self.startButton.yPos))
         self.screen.blit(self.mainStartText,
                              (self.startButton.xPos + 40, self.startButton.yPos + 20))

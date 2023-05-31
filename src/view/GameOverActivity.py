@@ -13,6 +13,9 @@ class GameOverActivitiy:
         if not hasattr(cls, "_init"):
             self.data = data
             cls._init = True
+    def onClick(self):
+        pass
     def startGameOver(self):
+        DrawManager.drawGameOver(DrawManager)
         while LifeManager.isGameOver:
-            DrawManager.drawGameOver(DrawManager)
+            pass

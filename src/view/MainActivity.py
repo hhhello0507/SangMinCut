@@ -14,10 +14,10 @@ class MainAcitivty:
         if not hasattr(cls, "_init"):
             self.data = data
             cls._init = True
+
     def initPygame(self):
         pygame.init()
         DrawManager.init(DrawManager)
-
 
     # view
     def onMouseClick(self):
