@@ -44,7 +44,6 @@ class GameActivity:
                     LifeManager.isSetting = True
                     settingFragment()
 
-
     def onKeyClick(self):
         # move
         deltaTime = ClockManager.clock.tick(60)
@@ -63,6 +62,16 @@ class GameActivity:
                 Player.yPos += PLAYER_SPEED * deltaTime
         if keys[pygame.K_SPACE]:
             self.createBullet(self)
+        if keys[pygame.K_r]:
+            # print("onClickRBTN", Player.isSpecial)
+            if Player.isSpecial:
+                if not Player.isSpecialing:
+                    Player.beforeSpecialTime = time.time()
+                    Player.isSpecialing = True
+                    Player.playerMaxXP = int(Player.playerMaxXP * 1.2)
+                    Player.playerXP = 0
+
+
     def startGame(self):
         while LifeManager.isPlaying:
             while not LifeManager.isPause:

@@ -6,6 +6,7 @@ from src.wiget.Button import *
 from src.manager.BulletManager import *
 from src.manager.SangMinManager import *
 from src.manager.StageManager import *
+import math
 
 class DrawManager:
     startButton = Button(SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT)
@@ -129,7 +130,7 @@ class DrawUpdateManager():
         DrawManager.xpBarText = DrawManager.font.render(DrawManager.xpText, False, (255, 255, 0))
 
     def updateStageText(self):
-        DrawManager.stageText = f"STAGE - {StageManager.stage} !"
+        DrawManager.stageText = f"{StageManager.stage} STAGE ^ NEXT STAGE: {math.ceil(StageManager.beforeTime + StageManager.nextStageTime - time.time())}"
         DrawManager.stageBarText = DrawManager.font.render(DrawManager.stageText, False, (255, 255, 0))
 
     def updateGame(self):

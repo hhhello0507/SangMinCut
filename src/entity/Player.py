@@ -7,6 +7,10 @@ class Player:
     playerHP = PLAYER_INIT_HP
     playerXP = 0
     playerMaxXP = PLAYER_INIT_MAX_XP
+    isSpecial = False
+    isSpecialing = False
+    specialCnt = 3
+    beforeSpecialTime = None
 
     def initPlayer(self):
         self.xPos = PLAYER_INIT_XPOS
@@ -25,3 +29,5 @@ class Player:
         if not hasattr(cls, "_init"):
             self.data = data
             cls._init = True
+
+
