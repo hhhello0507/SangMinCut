@@ -10,8 +10,8 @@ class SangMinManager:
     sangMinLoadTime = 0
     sangMinStartTime = time.time()
     sangMinList = []
-    sangMinCreateTime1 = 0.4
-    sangMinCreateTime2 = 0.7
+    sangMinCreateTime1 = SANGMIN_CREATE_TIME_1
+    sangMinCreateTime2 = SANGMIN_CREATE_TIME_2
 
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, "_instance"):

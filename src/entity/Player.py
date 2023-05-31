@@ -9,7 +9,7 @@ class Player:
     playerMaxXP = PLAYER_INIT_MAX_XP
     isSpecial = False
     isSpecialing = False
-    specialCnt = 3
+    specialCnt = PLAYER_SPECIAL_BULLET_SHOOT_CNT
     beforeSpecialTime = None
 
     def initPlayer(self):
