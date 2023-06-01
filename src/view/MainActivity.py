@@ -30,7 +30,6 @@ class MainAcitivty:
                     LifeManager.isPlaying = True
                     LifeManager.isPause = False
 
-
     def startMain(self):
         # init
         self.initPygame(self)

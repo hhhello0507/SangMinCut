@@ -5,7 +5,6 @@ from src.entity.Sangmin import *
 import time
 import random
 
-
 class SangMinManager:
     sangMinLoadTime = 0
     sangMinStartTime = time.time()

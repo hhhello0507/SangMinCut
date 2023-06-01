@@ -25,6 +25,6 @@ class MoveEntity:
             self.isActive = False
 
     def calcMove(self, xPos, yPos, speed):
-        (self.xMove, self.yMove) = normalized(xPos - self.xPos, yPos - self.yPos)
+        (self.xMove, self.yMove) = Utils.normalized(Utils, xPos - self.xPos, yPos - self.yPos)
         self.xMove *= speed
         self.yMove *= speed

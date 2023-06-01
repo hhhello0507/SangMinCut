@@ -6,11 +6,12 @@ from src.wiget.Button import *
 from src.manager.BulletManager import *
 from src.manager.SangMinManager import *
 from src.manager.StageManager import *
+from src.manager.GalManager import *
 import math
 
 class DrawManager:
     startButton = Button(SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT)
-    settingButton = Button(0, 0, SETTING_WIDTH, SETTING_HEIGHT)
+    settingButton = Button(0, 0, SETTING_BUTTON_WIDTH, SETTING_BUTTON_HEIGHT)
     soundButton = Button(0, 0, SOUND_BUTTON_WIDTH, SOUND_BUTTON_HEIGHT)
     closeButton = Button(100, 0, CLOSE_BUTTON_WIDTH, CLOSE_BUTTON_HEIGHT)
     backButton = Button(200, 0, BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT)
@@ -87,6 +88,8 @@ class DrawManager:
             self.screen.blit(IMG_BULLET, (bullet.xPos, bullet.yPos))
         for sangMin in SangMinManager.sangMinList:
             self.screen.blit(IMG_SANGMIN, (sangMin.xPos, sangMin.yPos))
+        for gal in GalManager.galList:
+            self.screen.blit(IMG_GAL, (gal.xPos, gal.yPos))
 
     def drawHPBar(self):
         self.screen.blit(self.hpBarText, (Player.xPos, Player.yPos))
@@ -104,11 +107,11 @@ class DrawManager:
 
     # 임시 이미지
     def drawGameOverMap(self):
-        print(123)
+        # 검열
+        # self.screen.blit(IMG_GAMEOVER_BACKGROUND, (0, 0))
         self.screen.blit(IMG_BUTTON, (self.startButton.xPos, self.startButton.yPos))
         self.screen.blit(self.mainStartText,
                              (self.startButton.xPos + 40, self.startButton.yPos + 20))
-
 
 class DrawUpdateManager():
     def __new__(cls, *args, **kwargs):

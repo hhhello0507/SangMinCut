@@ -24,7 +24,7 @@ class GameActivity:
 
     def createBullet(self):
         (xMousePos, yMousePos) = pygame.mouse.get_pos()
-        (normalizedXPos, normalizedYPos) = normalized(Player.xPos + PLAYER_WIDTH / 2 - xMousePos,
+        (normalizedXPos, normalizedYPos) = Utils.normalized(Utils, Player.xPos + PLAYER_WIDTH / 2 - xMousePos,
                                                       Player.yPos + PLAYER_HEIGHT / 2 - yMousePos)
         bullet = Bullet(Player.xPos + PLAYER_WIDTH / 2, Player.yPos + PLAYER_HEIGHT / 2,
                         -normalizedXPos * BULLET_SPEED,
@@ -77,10 +77,19 @@ class GameActivity:
                 self.onMouseClick(self)
                 # manage
                 BulletManager.manageBullet(BulletManager)
-                SangMinManager.manageSangMin(SangMinManager)
+
+                if STAGES[StageManager.stage][0]:
+                    SangMinManager.manageSangMin(SangMinManager)
+                    SangMinManager.createSangMin(SangMinManager)
+                if STAGES[StageManager.stage][1]:
+                    GalManager.manageGal(GalManager)
+                    GalManager.createGal(GalManager)
+
                 PlayerManager.managePlayer(PlayerManager)
-                SangMinManager.createSangMin(SangMinManager)
+
                 StageManager.manageStage(StageManager)
+
+
 
                 # draw
                 DrawManager.drawGame(DrawManager)

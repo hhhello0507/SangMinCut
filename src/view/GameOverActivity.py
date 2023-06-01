@@ -15,6 +15,7 @@ class GameOverActivitiy:
             cls._init = True
     def onClick(self):
         pass
+
     def startGameOver(self):
         DrawManager.drawGameOver(DrawManager)
         while LifeManager.isGameOver:
