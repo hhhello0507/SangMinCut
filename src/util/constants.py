@@ -7,6 +7,8 @@ DEFAULT_FRAME = 60
 SCREEN_WIDTH = 1440
 SCREEN_HEIGHT = 960
 
+PLAYER_XP_TEXT_WIDTH = 20
+
 BUTTON_WIDTH = 140
 BUTTON_HEIGHT = 80
 
@@ -33,7 +35,7 @@ PLAYER_SPEED = 0.5
 PLAYER_SPECIAL_BULLETS_CNT = 48
 PLAYER_SPECIAL_BULLET_SHOOT_CNT = 3
 PLAYER_INIT_HP = 10
-PLAYER_INIT_MAX_XP = 30
+PLAYER_INIT_MAX_XP = 200
 PLAYER_INIT_XPOS = (SCREEN_WIDTH - PLAYER_WIDTH) / 2
 PLAYER_INIT_YPOS = (SCREEN_HEIGHT - PLAYER_HEIGHT) / 2
 
@@ -63,22 +65,29 @@ BULLET_WIDTH = 40
 BULLET_HEIGHT = 40
 BULLET_SPEED = 5
 
-HP_POTION_WIDTH = 30
-HP_POTION_HEIGHT = 30
+HP_POTION_WIDTH = 20
+HP_POTION_HEIGHT = 40
+HP_CREATE_TIME_1 = 1
+HP_CREATE_TIME_2 = 2
+
+XP_POTION_WIDTH = 40
+XP_POTION_HEIGHT = 20
+XP_CREATE_TIME_1 = 1
+XP_CREATE_TIME_2 = 2
 
 # stage
 STAGES = [
-    ("PSM", "JMK"),
-    (True, False),
-    (True, False),
-    (True, False),
-    (False, True),
-    (False, True),
-    (False, True),
-    (True, True),
-    (True, True),
-    (True, True),
-    (True, True),
-    (True, True),
-    (True, True)
+    ("SM", "MK", "HP", "MP"),
+    (True, True, True, True),
+    (True, False, False, False),
+    (True, False, True, False),
+    (False, True, False, True),
+    (False, True, True, False),
+    (False, True, False, True),
+    (True, True, False, False),
+    (True, True, False, False),
+    (True, True, True, True),
+    (True, True, False, False),
+    (True, True, False, True),
+    (True, True, True, False)
 ]

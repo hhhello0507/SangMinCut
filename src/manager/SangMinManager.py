@@ -28,14 +28,14 @@ class SangMinManager:
             # 플레이어와 충돌
             if sangMin.objectRect.colliderect(pygame.Rect(Player.xPos, Player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
                 sangMin.isActive = False
-                Player.playerHP -= 1
-                print("PlayerHP - %d" %(Player.playerHP))
+                Player.playerHp -= 1
+                print("PlayerHP : -%d" % (Player.playerHp))
             # 총알과 충돌
             for (bulletIdx, bullet) in enumerate(BulletManager.bulletList):
                 if sangMin.objectRect.colliderect(bullet.objectRect):
                     sangMin.isActive = False
-                    Player.playerXP += 1
-                    print("playerXP - %d" %Player.playerXP)
+                    Player.playerXp += 1
+                    print("playerXP : +%d" % Player.playerXp)
             sangMin.calcMove(Player.xPos + PLAYER_WIDTH / 2, Player.yPos + PLAYER_HEIGHT / 2, SANGMIN_SPEED)
             sangMin.move()
             if sangMin.isActive:
@@ -52,4 +52,4 @@ class SangMinManager:
             while ((sangMinXPos - Player.xPos) ** 2 + (sangMinYPos - Player.yPos) ** 2) ** 0.5 < 300:
                 (sangMinXPos, sangMinYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
             sangMin = SangMin(sangMinXPos + SANGMIN_WIDTH / 2, sangMinYPos + SANGMIN_HEIGHT / 2)
-            SangMinManager.sangMinList.append(sangMin)
+            self.sangMinList.append(sangMin)

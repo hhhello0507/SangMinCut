@@ -16,13 +16,18 @@ IMG_SANGMIN = pygame.transform.scale(IMG_SANGMIN, (SANGMIN_WIDTH, SANGMIN_HEIGHT
 IMG_GAL = pygame.image.load("../res/image/sangmin3.jpg")
 IMG_GAL = pygame.transform.scale(IMG_GAL, (GAL_WIDTH, GAL_HEIGHT))
 
+IMG_HP_POTION = pygame.image.load("../res/image/player1.png")
+IMG_HP_POTION = pygame.transform.scale(IMG_HP_POTION, (HP_POTION_WIDTH, HP_POTION_HEIGHT))
+
+IMG_XP_POTION = pygame.image.load("../res/image/player1.png")
+IMG_XP_POTION = pygame.transform.scale(IMG_XP_POTION, (XP_POTION_WIDTH, XP_POTION_HEIGHT))
+
 IMG_BUTTON = pygame.image.load("../res/image/bullet.png")
 IMG_BUTTON = pygame.transform.scale(IMG_BUTTON, (BUTTON_WIDTH, BUTTON_HEIGHT))
 
-IMG_SETTING = pygame.image.load("../res/image/bullet.png")
-IMG_SETTING = pygame.transform.scale(IMG_SETTING, (SETTING_BUTTON_WIDTH, SETTING_BUTTON_HEIGHT))
+IMG_SETTING_BUTTON = pygame.image.load("../res/image/bullet.png")
+IMG_SETTING_BUTTON = pygame.transform.scale(IMG_SETTING_BUTTON, (SETTING_BUTTON_WIDTH, SETTING_BUTTON_HEIGHT))
 
-# setting
 IMG_SOUND_BUTTON = pygame.image.load("../res/image/bullet.png")
 IMG_SOUND_BUTTON = pygame.transform.scale(IMG_SOUND_BUTTON, (SOUND_BUTTON_WIDTH, SOUND_BUTTON_HEIGHT))
 

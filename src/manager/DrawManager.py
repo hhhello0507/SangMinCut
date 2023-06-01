@@ -7,6 +7,8 @@ from src.manager.BulletManager import *
 from src.manager.SangMinManager import *
 from src.manager.StageManager import *
 from src.manager.GalManager import *
+from src.manager.HpPotionManager import *
+from src.manager.XpPotionManager import *
 import math
 
 class DrawManager:
@@ -83,13 +85,17 @@ class DrawManager:
     def drawGameMap(self):
         self.screen.blit(IMG_BACKGROUND, (0, 0))
         self.screen.blit(IMG_PLAYER, (Player.xPos, Player.yPos))
-        self.screen.blit(IMG_SETTING, (self.settingButton.xPos, self.settingButton.yPos))
+        self.screen.blit(IMG_SETTING_BUTTON, (self.settingButton.xPos, self.settingButton.yPos))
         for bullet in BulletManager.bulletList:
             self.screen.blit(IMG_BULLET, (bullet.xPos, bullet.yPos))
         for sangMin in SangMinManager.sangMinList:
             self.screen.blit(IMG_SANGMIN, (sangMin.xPos, sangMin.yPos))
         for gal in GalManager.galList:
             self.screen.blit(IMG_GAL, (gal.xPos, gal.yPos))
+        for hpPotion in HpPotionManager.hpPotionList:
+            self.screen.blit(IMG_HP_POTION, (hpPotion.xPos, hpPotion.yPos))
+        for xpPotion in XpPotionManager.xpPotionList:
+            self.screen.blit(IMG_XP_POTION, (xpPotion.xPos, xpPotion.yPos))
 
     def drawHPBar(self):
         self.screen.blit(self.hpBarText, (Player.xPos, Player.yPos))
@@ -126,11 +132,11 @@ class DrawUpdateManager():
             cls._init = True
 
     def updateHpText(self):
-        DrawManager.hpText = f"{Player.playerHP} / {PLAYER_INIT_HP}"
+        DrawManager.hpText = f"{Player.playerHp} / {PLAYER_INIT_HP}"
         DrawManager.hpBarText = DrawManager.font.render(DrawManager.hpText, False, (255, 255, 0))
 
     def updateXpText(self):
-        DrawManager.xpText = "*" * Player.playerXP + "-" * (Player.playerMaxXP - Player.playerXP)
+        DrawManager.xpText = "*" * (int(Player.playerXp * (PLAYER_XP_TEXT_WIDTH / Player.playerMaxXp))) + "-" * (int((Player.playerMaxXp - Player.playerXp) *  (PLAYER_XP_TEXT_WIDTH / Player.playerMaxXp)))
         DrawManager.xpBarText = DrawManager.font.render(DrawManager.xpText, False, (255, 255, 0))
 
     def updateStageText(self):

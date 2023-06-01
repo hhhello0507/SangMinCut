@@ -4,20 +4,13 @@ from src.util.constants import *
 class Player:
     xPos = PLAYER_INIT_XPOS
     yPos = PLAYER_INIT_YPOS
-    playerHP = PLAYER_INIT_HP
-    playerXP = 0
-    playerMaxXP = PLAYER_INIT_MAX_XP
+    playerHp = PLAYER_INIT_HP
+    playerXp = 0
+    playerMaxXp = PLAYER_INIT_MAX_XP
     isSpecial = False
     isSpecialing = False
     specialCnt = PLAYER_SPECIAL_BULLET_SHOOT_CNT
     beforeSpecialTime = None
-
-    def initPlayer(self):
-        self.xPos = PLAYER_INIT_XPOS
-        self.yPos = PLAYER_INIT_YPOS
-        self.playerHP = PLAYER_INIT_HP
-        self.playerXP = 0
-        self.playerMaxXP = PLAYER_INIT_MAX_XP
 
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, "_instance"):
@@ -29,5 +22,13 @@ class Player:
         if not hasattr(cls, "_init"):
             self.data = data
             cls._init = True
+
+    def initPlayer(self):
+        self.xPos = PLAYER_INIT_XPOS
+        self.yPos = PLAYER_INIT_YPOS
+        self.playerHp = PLAYER_INIT_HP
+        self.playerXp = 0
+        self.playerMaxXp = PLAYER_INIT_MAX_XP
+
 
 

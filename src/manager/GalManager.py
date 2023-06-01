@@ -26,14 +26,14 @@ class GalManager:
             # 플레이어와 충돌
             if gal.objectRect.colliderect(pygame.Rect(Player.xPos, Player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
                 gal.isActive = False
-                Player.playerHP -= 1
-                print("PlayerHP - %d" %(Player.playerHP))
+                Player.playerHp -= 1
+                print("PlayerHP : -%d" % (Player.playerHp))
         # 총알과 충돌
             for (bulletIdx, bullet) in enumerate(BulletManager.bulletList):
                 if gal.objectRect.colliderect(bullet.objectRect):
                     gal.isActive = False
-                    Player.playerXP += 1
-                    print("playerXP - %d" % Player.playerXP)
+                    Player.playerXp += 1
+                    print("playerXP : +%d" % Player.playerXp)
             gal.move()
             gal.yPos = gal.a * (gal.xPos - gal.s) ** 2 + gal.h
             if gal.isActive:

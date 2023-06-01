@@ -10,3 +10,4 @@ while True:
     MainAcitivty.startMain(MainAcitivty)
     GameActivity.startGame(GameActivity)
     GameOverActivitiy.startGameOver(GameOverActivitiy)
+    

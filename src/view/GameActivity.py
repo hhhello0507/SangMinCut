@@ -8,6 +8,8 @@ from src.manager.PlayerManager import *
 from src.manager.DrawManager import *
 from src.entity.Player import *
 from src.manager.StageManager import *
+from src.manager.HpPotionManager import *
+from src.manager.XpPotionManager import *
 
 # TODO: SOUND ON/OFF, CLOSE - 나가기, BACK - 뒤로가기
 class GameActivity:
@@ -65,9 +67,8 @@ class GameActivity:
                 if not Player.isSpecialing:
                     Player.beforeSpecialTime = time.time()
                     Player.isSpecialing = True
-                    Player.playerMaxXP = int(Player.playerMaxXP * 1.2)
-                    Player.playerXP = 0
-
+                    Player.playerMaxXp = int(Player.playerMaxXp * 1.2)
+                    Player.playerXp = 0
 
     def startGame(self):
         while LifeManager.isPlaying:
@@ -75,20 +76,25 @@ class GameActivity:
                 # event
                 self.onKeyClick(self)
                 self.onMouseClick(self)
+
                 # manage
                 BulletManager.manageBullet(BulletManager)
 
                 if STAGES[StageManager.stage][0]:
-                    SangMinManager.manageSangMin(SangMinManager)
                     SangMinManager.createSangMin(SangMinManager)
                 if STAGES[StageManager.stage][1]:
-                    GalManager.manageGal(GalManager)
                     GalManager.createGal(GalManager)
+                if STAGES[StageManager.stage][2]:
+                    HpPotionManager.createHpPotion(HpPotionManager)
+                if STAGES[StageManager.stage][3]:
+                    XpPotionManager.createXpPotion(XpPotionManager)
 
+                HpPotionManager.manageHpPotion(HpPotionManager)
                 PlayerManager.managePlayer(PlayerManager)
-
+                GalManager.manageGal(GalManager)
+                SangMinManager.manageSangMin(SangMinManager)
                 StageManager.manageStage(StageManager)
-
+                XpPotionManager.manageXpPotion(XpPotionManager)
 
 
                 # draw

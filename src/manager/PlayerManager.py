@@ -16,7 +16,7 @@ class PlayerManager:
             cls._init = True
 
     def managePlayer(self):
-        if Player.playerHP == 0:
+        if Player.playerHp == 0:
             LifeManager.isPause = True
             LifeManager.isPlaying = False
             LifeManager.isSetting = False
@@ -25,8 +25,10 @@ class PlayerManager:
             BulletManager.bulletList.clear()
             SangMinManager.sangMinList.clear()
             StageManager.stage = 1
-        if Player.playerXP >= Player.playerMaxXP:
-            Player.playerXP = Player.playerMaxXP
+        if Player.playerHp > PLAYER_INIT_HP:
+            Player.playerHp = PLAYER_INIT_HP
+        if Player.playerXp >= Player.playerMaxXp:
+            Player.playerXp = Player.playerMaxXp
             Player.isSpecial = True
         if Player.isSpecialing:
             now = time.time()
