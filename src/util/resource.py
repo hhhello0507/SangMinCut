@@ -16,6 +16,9 @@ IMG_SANGMIN = pygame.transform.scale(IMG_SANGMIN, (SANGMIN_WIDTH, SANGMIN_HEIGHT
 IMG_GAL = pygame.image.load("../res/image/sangmin3.jpg")
 IMG_GAL = pygame.transform.scale(IMG_GAL, (GAL_WIDTH, GAL_HEIGHT))
 
+IMG_HOJOON = pygame.image.load("../res/image/hojoon.png")
+IMG_HOJOON = pygame.transform.scale(IMG_HOJOON, (HOJOON_WIDTH, HOJOON_HEIGHT))
+
 IMG_HP_POTION = pygame.image.load("../res/image/player1.png")
 IMG_HP_POTION = pygame.transform.scale(IMG_HP_POTION, (HP_POTION_WIDTH, HP_POTION_HEIGHT))
 

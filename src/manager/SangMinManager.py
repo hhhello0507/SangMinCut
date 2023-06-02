@@ -22,9 +22,12 @@ class SangMinManager:
         if not hasattr(cls, "_init"):
             self.data = data
             cls._init = True
+
     def manageSangMin(self):
         activeSangMinList = []
         for (idx, sangMin) in enumerate(self.sangMinList):
+            if not Utils.isObjectInMap(Utils, sangMin):
+                sangMin.isActive = False
             # 플레이어와 충돌
             if sangMin.objectRect.colliderect(pygame.Rect(Player.xPos, Player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
                 sangMin.isActive = False

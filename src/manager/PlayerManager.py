@@ -16,7 +16,7 @@ class PlayerManager:
             cls._init = True
 
     def managePlayer(self):
-        if Player.playerHp == 0:
+        if Player.playerHp <= 0:
             LifeManager.isPause = True
             LifeManager.isPlaying = False
             LifeManager.isSetting = False

@@ -10,6 +10,7 @@ from src.entity.Player import *
 from src.manager.StageManager import *
 from src.manager.HpPotionManager import *
 from src.manager.XpPotionManager import *
+from src.manager.HojoonManager import *
 
 # TODO: SOUND ON/OFF, CLOSE - 나가기, BACK - 뒤로가기
 class GameActivity:
@@ -95,6 +96,8 @@ class GameActivity:
                 SangMinManager.manageSangMin(SangMinManager)
                 StageManager.manageStage(StageManager)
                 XpPotionManager.manageXpPotion(XpPotionManager)
+                HojoonManager.manageHojoon(HojoonManager)
+                HojoonManager.createHojoon(HojoonManager)
 
 
                 # draw

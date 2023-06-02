@@ -23,6 +23,8 @@ class GalManager:
     def manageGal(self):
         activeGalList = []
         for (idx, gal) in enumerate(self.galList):
+            if not Utils.isObjectInMap(Utils, gal):
+                gal.isActive = False
             # 플레이어와 충돌
             if gal.objectRect.colliderect(pygame.Rect(Player.xPos, Player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
                 gal.isActive = False

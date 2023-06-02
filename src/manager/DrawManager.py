@@ -7,6 +7,7 @@ from src.manager.BulletManager import *
 from src.manager.SangMinManager import *
 from src.manager.StageManager import *
 from src.manager.GalManager import *
+from src.manager.HojoonManager import *
 from src.manager.HpPotionManager import *
 from src.manager.XpPotionManager import *
 import math
@@ -92,6 +93,8 @@ class DrawManager:
             self.screen.blit(IMG_SANGMIN, (sangMin.xPos, sangMin.yPos))
         for gal in GalManager.galList:
             self.screen.blit(IMG_GAL, (gal.xPos, gal.yPos))
+        for hojoon in HojoonManager.hojoonList:
+            self.screen.blit(IMG_HOJOON, (hojoon.xPos, hojoon.yPos))
         for hpPotion in HpPotionManager.hpPotionList:
             self.screen.blit(IMG_HP_POTION, (hpPotion.xPos, hpPotion.yPos))
         for xpPotion in XpPotionManager.xpPotionList:

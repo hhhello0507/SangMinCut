@@ -61,6 +61,12 @@ GAL_SPEED = 3
 GAL_CREATE_TIME_1 = 0.5
 GAL_CREATE_TIME_2 = 1
 
+HOJOON_WIDTH = 100
+HOJOON_HEIGHT = 100
+HOJOON_SPEED = 10
+HOJOON_CREATE_TIME_1 = 1
+HOJOON_CREATE_TIME_2 = 2
+
 BULLET_WIDTH = 40
 BULLET_HEIGHT = 40
 BULLET_SPEED = 5
@@ -77,17 +83,17 @@ XP_CREATE_TIME_2 = 2
 
 # stage
 STAGES = [
-    ("SM", "MK", "HP", "MP"),
-    (True, True, True, True),
-    (True, False, False, False),
-    (True, False, True, False),
-    (False, True, False, True),
-    (False, True, True, False),
-    (False, True, False, True),
-    (True, True, False, False),
-    (True, True, False, False),
-    (True, True, True, True),
-    (True, True, False, False),
-    (True, True, False, True),
-    (True, True, True, False)
+    ("SM", "MK", "HP", "MP", "HJ"),
+    (True, True, True, True, True),
+    (True, False, False, False, False),
+    (True, False, True, False, False),
+    (False, True, False, True, True),
+    (False, True, True, False, True),
+    (False, True, False, True, False),
+    (True, True, False, False, False),
+    (True, True, False, False, True),
+    (True, True, True, True, False),
+    (True, True, False, False, True),
+    (True, True, False, True, False),
+    (True, True, True, True, True)
 ]
