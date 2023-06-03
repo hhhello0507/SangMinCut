@@ -20,11 +20,13 @@ class GameOverActivity:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousePos = pygame.mouse.get_pos()
                 if toMainButtonView.isOnClick(mousePos):
+                    print(0)
                     lifeCycleManager.isGameOver = False
                     lifeCycleManager.isMain = True
                     playerInit()
                     printStatus()
                 if replayButtonView.isOnClick(mousePos):
+                    print(1)
                     lifeCycleManager.isGameOver = False
                     lifeCycleManager.isPlaying = True
                     lifeCycleManager.isPause = False
