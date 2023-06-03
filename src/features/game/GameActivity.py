@@ -1,4 +1,4 @@
-from features.game.setting.SettingFragment import *
+from features.game.setting.PauseFragment import *
 from features.game.manager.PlayerManager import *
 
 
@@ -27,9 +27,9 @@ class GameActivity:
                 self.createBullet()
                 if settingButtonView.isOnClick(pygame.mouse.get_pos()):
                     lifeCycleManager.isPause = True
-                    lifeCycleManager.isSetting = True
-                    settingFragment = SettingFragment()
-                    settingFragment.startSetting()
+                    lifeCycleManager.isPauseFragment = True
+                    settingFragment = PauseFragment()
+                    settingFragment.startPause()
             if event.type == pygame.QUIT:
                 pygame.quit()
 
@@ -70,7 +70,7 @@ class GameActivity:
         playerManager = container["playerManager"]
         stageManager = container["stageManager"]
         lifeCycleManager = container["lifeCycleManager"]
-        while lifeCycleManager.isPlaying:
+        while lifeCycleManager.isGameActivity:
             while not lifeCycleManager.isPause:
                 # event
                 self.onKeyClick()

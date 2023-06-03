@@ -1,5 +1,5 @@
 import Container
-from src.wiget.ImageView import ImageView
+from src.wiget.ImageView import *
 
 
 class Painter:

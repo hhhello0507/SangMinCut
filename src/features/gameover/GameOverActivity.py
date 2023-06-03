@@ -3,6 +3,7 @@ import pygame
 
 from src.entity.Player import playerInit
 from src.util.utils import printStatus
+from util.lifeCycle import LifeCycleManager
 
 
 class GameOverActivity:
@@ -21,24 +22,24 @@ class GameOverActivity:
                 mousePos = pygame.mouse.get_pos()
                 if toMainButtonView.isOnClick(mousePos):
                     print(0)
-                    lifeCycleManager.isGameOver = False
-                    lifeCycleManager.isMain = True
+                    lifeCycleManager.isGameOverActivity = False
+                    lifeCycleManager.isMainActivity = True
                     playerInit()
                     printStatus()
                 if replayButtonView.isOnClick(mousePos):
                     print(1)
-                    lifeCycleManager.isGameOver = False
-                    lifeCycleManager.isPlaying = True
+                    lifeCycleManager.isGameOverActivity = False
+                    lifeCycleManager.isGameActivity = True
                     lifeCycleManager.isPause = False
-                    lifeCycleManager.isMain = False
+                    lifeCycleManager.isMainActivity = False
                     playerInit()
             if event.type == pygame.QUIT:
                 pygame.quit()
 
     def startGameOver(self):
-        lifeCycleManager = Container.container["lifeCycleManager"]
         gameOverPainter = Container.container["gameOverPainter"]
-        while lifeCycleManager.isGameOver:
+        lifeCycleManager = Container.container["lifeCycleManager"]
+        while lifeCycleManager.isGameOverActivity:
             self.onMouseClick()
             gameOverPainter.paint()
             Container.display.update()

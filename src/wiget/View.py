@@ -1,7 +1,7 @@
 class View:
     def __init__(self):
-        self._xPos = None
-        self._yPos = None
+        self._xPos = 0
+        self._yPos = 0
 
     def setPos(self, pos):
         xPos, yPos = pos

@@ -5,12 +5,13 @@ import pygame
 class ImageView(View):
     def __init__(self):
         super().__init__()
-        self.__scale = None
+        self.__scale = (0, 0)
         self.__image = pygame.image.load("../res/image/player1.png")
 
     def setScale(self, scale):
         self.__scale = scale
         self.__image = pygame.transform.scale(self.__image, scale)
+        return self
 
     def setImageByPath(self, image):
         self.__image = pygame.image.load(image)

@@ -3,7 +3,7 @@ from src.features.game.manager.HoJoonManager import HoJoonManager
 from src.features.game.manager.HpPotionManager import HpPotionManager
 from src.features.game.manager.GalManager import GalManager
 from src.features.game.manager.XpPotionManager import XpPotionManager
-from src.features.game.setting.SettingPainter import *
+from src.features.game.setting.PausePainter import *
 from src.features.game.manager.BladeManager import *
 from src.features.game.GamePainter import *
 from src.features.main.MainPainter import *
@@ -33,7 +33,7 @@ container = {
     "bladeManager": BladeManager(),
 
     # game-etc
-    "settingPainter": SettingPainter(),
+    "pausePainter": PausePainter(),
     "player": Player(),
 
     # gameOver

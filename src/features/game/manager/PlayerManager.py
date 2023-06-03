@@ -9,15 +9,14 @@ from util.lifeCycle import lifeCycleInit
 
 
 class PlayerManager:
-
     def managePlayer(self):
         if Player.playerHp <= 0:
             lifeCycleManager = Container.container["lifeCycleManager"]
-            self.initAll()
-            lifeCycleManager.isMain = False
-            lifeCycleManager.isPlaying = False
+            initAll()
+            lifeCycleManager.isMainActivity = False
+            lifeCycleManager.isGameActivity = False
             lifeCycleManager.isPause = True
-            lifeCycleManager.isGameOver = True
+            lifeCycleManager.isGameOverActivity = True
 
         if Player.playerHp > PLAYER_INIT_HP:
             Player.playerHp = PLAYER_INIT_HP
@@ -39,16 +38,16 @@ class PlayerManager:
                 Player.isSpecialing = False
                 Player.isSpecial = False
 
-    def initAll(self):
-        gameOverActivity = Container.container["gameOverActivity"]
-        lifeCycleInit()
-        playerInit()
-        bulletInit()
-        sangMinInit()
-        stageInit()
-        gameOverActivity.init()
-        bladeInit()
-        galInit()
-        hoJoonInit()
-        hpPotionInit()
-        xpPotionInit()
+def initAll():
+    gameOverActivity = Container.container["gameOverActivity"]
+    gameOverActivity.init()
+    lifeCycleInit()
+    playerInit()
+    bulletInit()
+    sangMinInit()
+    stageInit()
+    bladeInit()
+    galInit()
+    hoJoonInit()
+    hpPotionInit()
+    xpPotionInit()

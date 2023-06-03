@@ -48,10 +48,10 @@ def printStatus():
 
     print(f"""
 -------------------------------------
-isMain:  {lifeCycleManager.isMain}
-isPlaying: {lifeCycleManager.isPlaying}
+isMain:  {lifeCycleManager.isMainActivity}
+isPlaying: {lifeCycleManager.isGameActivity}
 isPause: {lifeCycleManager.isPause}
-isSetting: {lifeCycleManager.isSetting}
+isSetting: {lifeCycleManager.isPause}
 
 player: {playerToString()}
 bullets: {bulletManager.bulletList}

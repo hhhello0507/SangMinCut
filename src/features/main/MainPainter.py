@@ -2,18 +2,22 @@ from util.painter import Painter
 from src.wiget.ButtonView import ButtonView
 from src.util.constants import *
 from src.util.resource import *
+from src.wiget.TextView import *
 
 
 class MainPainter(Painter):
     def init(self):
         self._buttonViewList = {
-            "startButton":
+            "playButtonView":
                 ButtonView() \
-                    .setPos((SCREEN_WIDTH - 400, SCREEN_HEIGHT - 100)) \
-                    .setImageByPath("../res/image/player1.png") \
-                    .setScale((500, 100)) \
-                    .setText("LET'S JAVA SANGMIN") \
-                    .setTextPos((SCREEN_WIDTH - 310, SCREEN_HEIGHT - 65))
+                    .setPos((440, SCREEN_HEIGHT - 280)) \
+                    .setImageByPath("../res/image/btn_play.png") \
+                    .setScale((450, 100)),
+            "rankingButtonView":
+                ButtonView() \
+                    .setPos((440, SCREEN_HEIGHT - 150)) \
+                    .setImageByPath("../res/image/btn_ranking.png") \
+                    .setScale((450, 100))
         }
 
     def getButtonViewList(self):
@@ -25,4 +29,4 @@ class MainPainter(Painter):
 
     def __paintBackground(self):
         screen = Container.screen
-        screen.blit(IMG_BACKGROUND, (0, 0))
+        screen.blit(IMG_MAIN_BACKGROUND, (0, 0))

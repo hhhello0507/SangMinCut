@@ -73,7 +73,7 @@ class GamePainter(Painter):
     def __paintBackground(self):
         settingButton = self._buttonList["settingButtonView"]
         screen = Container.screen
-        screen.blit(IMG_BACKGROUND, (0, 0))
+        screen.blit(IMG_GAME_BACKGROUND1, (0, 0))
         screen.blit(settingButton.getImage(), (settingButton.getXPos(), settingButton.getYPos()))
 
     def update(self):

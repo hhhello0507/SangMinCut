@@ -4,10 +4,11 @@ from src.wiget.ImageView import *
 class TextView(View):
     def __init__(self):
         super().__init__()
-        self.__text = "default text"
+        self.__text = ""
         self.__color = (20, 20, 20)
         self.__textSize = 30
-        self.__textView = pygame.font.Font("../res/font/arial.ttf", self.__textSize).render(self.__text, False, self.__color)
+        self.__font = "../res/font/nexon_bold.ttf"
+        self.__textView = pygame.font.Font(self.__font, self.__textSize).render(self.__text, False, self.__color)
 
     def setText(self, text):
         self.__text = text
@@ -33,6 +34,11 @@ class TextView(View):
     def getTextSize(self):
         return self.__textSize
 
+    def setFont(self, font):
+        self.__font = font
+        self.__reloadText()
+        return self
+
     def __reloadText(self):
-        font = pygame.font.Font("../res/font/arial.ttf", self.__textSize)
+        font = pygame.font.Font(self.__font, self.__textSize)
         self.__textView = font.render(self.__text, False, self.__color)
