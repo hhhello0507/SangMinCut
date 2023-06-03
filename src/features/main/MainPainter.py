@@ -4,7 +4,7 @@ from src.util.constants import *
 
 class MainPainter(Painter):
     def init(self):
-        self._buttonList = {
+        self._buttonViewList = {
             "startButton":
                 ButtonView() \
                     .setPos((SCREEN_WIDTH - 400, SCREEN_HEIGHT - 100)) \
@@ -14,5 +14,5 @@ class MainPainter(Painter):
                     .setTextPos((SCREEN_WIDTH - 310, SCREEN_HEIGHT - 65))
         }
 
-    def getButtonList(self):
-        return self._buttonList
+    def getButtonViewList(self):
+        return self._buttonViewList

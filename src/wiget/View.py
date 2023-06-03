@@ -7,6 +7,7 @@ class View:
         xPos, yPos = pos
         self._xPos = xPos
         self._yPos = yPos
+        return self
 
     def getPos(self):
         return (self._xPos, self._yPos)

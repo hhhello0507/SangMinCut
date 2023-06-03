@@ -40,17 +40,20 @@ class GamePainter(Painter):
 
         self._textViewList = {
             "hpText":
-                TextView(),
+                TextView() \
+                    .setPos((Player.xPos, Player.yPos)),
             "xpText":
-                TextView(),
+                TextView() \
+                    .setPos((Player.xPos, Player.yPos + 30)),
             "stageText":
-                TextView()
+                TextView() \
+                    .setPos((SCREEN_WIDTH / 2 - 100, 20))
         }
 
     def paint(self):
-        super().paint()
         self.__paintBackground()
         self.__paintPlayer()
+        super().paint()
         self.__paintSangMin()
         self.__paintBullet()
         self.__paintHoJoon()
@@ -93,5 +96,5 @@ class GamePainter(Painter):
         screen.blit(IMG_SETTING_BUTTON, (settingButton.getXPos(), settingButton.getYPos()))
 
 
-    def getButtonList(self):
+    def getButtonViewList(self):
         return self._buttonList

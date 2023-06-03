@@ -12,7 +12,7 @@ class GameActivity:
         self.__utils = container["utils"]
         self.__gamePainter = container["gamePainter"]
         self.__gamePainter.init()
-        self.__buttonList = self.__gamePainter.getButtonList()
+        self.__buttonList = self.__gamePainter.getButtonViewList()
 
     def createBullet(self):
         (xMousePos, yMousePos) = pygame.mouse.get_pos()

@@ -12,18 +12,17 @@ class Painter:
         self.__paintButtons()
         self.__paintTexts()
         self.__paintImages()
-        Container.display.update()
 
     def __paintButtons(self):
         for button in self._buttonViewList.values():
             self.__paintButtonView(button)
 
     def __paintImages(self):
-        for image in self._imageViewList:
+        for image in self._imageViewList.values():
             self.__paintImageView(image)
 
     def __paintTexts(self):
-        for text in self._textViewList:
+        for text in self._textViewList.values():
             self.__paintTextView(text)
 
     def __paintButtonView(self, button):

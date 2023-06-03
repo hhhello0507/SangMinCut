@@ -6,15 +6,15 @@ import pygame
 class MainActivity:
     def __init__(self):
         self.__mainPainter = None
-        self.__buttonList = None
+        self.__buttonViewList = None
 
     def init(self):
         self.__mainPainter = Container.container["mainPainter"]
         self.__mainPainter.init()
-        self.__buttonList = self.__mainPainter.getButtonList()
+        self.__buttonViewList = self.__mainPainter.getButtonViewList()
 
     def onMouseClick(self):
-        startButton = self.__buttonList["startButton"]
+        startButton = self.__buttonViewList["startButton"]
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousePos = pygame.mouse.get_pos()
@@ -28,3 +28,4 @@ class MainActivity:
         while LifeCycleManager.isMain:
             self.onMouseClick()
             self.__mainPainter.paint()
+            Container.display.update()
