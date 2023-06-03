@@ -1,3 +1,4 @@
+import Container
 from src.mysql.LifeCycleManager import *
 from features.game.manager.StageManager import *
 from src.entity.Bullet import *
@@ -5,12 +6,14 @@ from src.entity.Bullet import *
 class PlayerManager:
 
     def managePlayer(self):
+        lifeCycleManager = Container.container["lifeCycleManager"]
+        player = Container.container["player"]
         if Player.playerHp <= 0:
-            LifeCycleManager.isPause = True
-            LifeCycleManager.isPlaying = False
-            LifeCycleManager.isSetting = False
-            LifeCycleManager.isGameOver = True
-            Player.initPlayer(Player)
+            lifeCycleManager.isPause = True
+            lifeCycleManager.isPlaying = False
+            lifeCycleManager.isSetting = False
+            lifeCycleManager.isGameOver = True
+            player.initPlayer()
             BulletManager.bulletList.clear()
             SangMinManager.sangMinList.clear()
             StageManager.stage = 1

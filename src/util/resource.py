@@ -25,18 +25,6 @@ IMG_HP_POTION = pygame.transform.scale(IMG_HP_POTION, (HP_POTION_WIDTH, HP_POTIO
 IMG_XP_POTION = pygame.image.load("../res/image/player1.png")
 IMG_XP_POTION = pygame.transform.scale(IMG_XP_POTION, (XP_POTION_WIDTH, XP_POTION_HEIGHT))
 
-IMG_SETTING_BUTTON = pygame.image.load("../res/image/bullet.png")
-IMG_SETTING_BUTTON = pygame.transform.scale(IMG_SETTING_BUTTON, (SETTING_BUTTON_WIDTH, SETTING_BUTTON_HEIGHT))
-
-IMG_SOUND_BUTTON = pygame.image.load("../res/image/bullet.png")
-IMG_SOUND_BUTTON = pygame.transform.scale(IMG_SOUND_BUTTON, (SOUND_BUTTON_WIDTH, SOUND_BUTTON_HEIGHT))
-
-IMG_CLOSE_BUTTON = pygame.image.load("../res/image/bullet.png")
-IMG_CLOSE_BUTTON = pygame.transform.scale(IMG_CLOSE_BUTTON, (CLOSE_BUTTON_WIDTH, CLOSE_BUTTON_HEIGHT))
-
-IMG_BACK_BUTTON = pygame.image.load("../res/image/bullet.png")
-IMG_BACK_BUTTON = pygame.transform.scale(IMG_BACK_BUTTON, (BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT))
-
 # gameOver # 검열
 # IMG_GAMEOVER_BACKGROUND = pygame.image.load("../res/image/sangmin3.jpg")
 # IMG_GAMEOVER_BACKGROUND = pygame.transform.scale(IMG_GAMEOVER_BACKGROUND, (SCREEN_WIDTH, SCREEN_HEIGHT))

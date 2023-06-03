@@ -4,10 +4,6 @@ import pygame
 
 
 class MainActivity:
-    def __init__(self):
-        self.__mainPainter = None
-        self.__buttonViewList = None
-
     def init(self):
         self.__mainPainter = Container.container["mainPainter"]
         self.__mainPainter.init()

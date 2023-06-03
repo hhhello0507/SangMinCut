@@ -39,14 +39,14 @@ PLAYER_INIT_XPOS = (SCREEN_WIDTH - PLAYER_WIDTH) / 2
 PLAYER_INIT_YPOS = (SCREEN_HEIGHT - PLAYER_HEIGHT) / 2
 
 x = [Utils().normalized(1, tan(i * (360 / PLAYER_SPECIAL_BULLETS_CNT))) for i in range(1, PLAYER_SPECIAL_BULLETS_CNT // 4)] # 궁 각도 계산
-print(x)
+# print(x)
 PLAYER_SPECIAL_BULLET_DEGREE = []
 PLAYER_SPECIAL_BULLET_DEGREE.extend([(i[0], i[1]) for i in x])
 PLAYER_SPECIAL_BULLET_DEGREE.extend([(i[0], -i[1]) for i in x])
 PLAYER_SPECIAL_BULLET_DEGREE.extend([(-i[0], i[1]) for i in x])
 PLAYER_SPECIAL_BULLET_DEGREE.extend([(-i[0], -i[1]) for i in x])
 PLAYER_SPECIAL_BULLET_DEGREE.extend([(1, 0), (-1, 0), (0, 1), (0, -1)])
-print(PLAYER_SPECIAL_BULLET_DEGREE)
+# print(PLAYER_SPECIAL_BULLET_DEGREE)
 
 SANGMIN_WIDTH = 30
 SANGMIN_HEIGHT = 30

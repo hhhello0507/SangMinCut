@@ -48,12 +48,6 @@ class DrawManager:
     def drawStage(self):
         self.screen.blit(self.stageBarText, (200, 40))
 
-    def drawSettingMap(self):
-        self.screen.blit(IMG_SOUND_BUTTON, (self.soundButton.xPos, self.soundButton.yPos))
-        self.screen.blit(IMG_CLOSE_BUTTON, (self.closeButton.xPos, self.closeButton.yPos))
-        self.screen.blit(IMG_BACK_BUTTON, (self.backButton.xPos, self.backButton.yPos))
-        self.display.update()
-
     # 임시 이미지
     def drawGameOverMap(self):
         pass

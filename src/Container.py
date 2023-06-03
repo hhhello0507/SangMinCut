@@ -1,3 +1,4 @@
+from src.features.game.setting.SettingPainter import *
 from src.features.game.manager.BladeManager import *
 from src.features.game.GamePainter import *
 from src.features.main.MainPainter import *
@@ -23,6 +24,9 @@ container = {
     "hpPotionManager": HpPotionManager(),
     "xpPotionManager": XpPotionManager(),
     "bladeManager": BladeManager(),
+    "settingPainter": SettingPainter(),
+
+    "player": Player(),
 
     "gameOverActivity": GameOverActivity()
 

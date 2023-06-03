@@ -28,7 +28,7 @@ class HoJoonManager:
                     print("playerXP : +%d" % Player.playerXp)
             hojoon.move()
             hojoon.yPos = (math.sin(hojoon.a * hojoon.xPos) + math.sin(hojoon.b * hojoon.xPos) + math.sin(hojoon.c * hojoon.xPos)) * 30 + hojoon.h
-            print(hojoon.xPos, hojoon.yPos)
+            # print(hojoon.xPos, hojoon.yPos)
             if hojoon.isActive:
                 activeHojoonList.append(hojoon)
                 self.hojoonList = activeHojoonList

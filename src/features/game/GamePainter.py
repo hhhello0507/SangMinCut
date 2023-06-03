@@ -14,27 +14,6 @@ class GamePainter(Painter):
                     .setImageByPath("../res/image/player1.png") \
                     .setScale((200, 100)) \
                     .setText("설정") \
-                    .setTextPos((100, 100)),
-            "soundButton":
-                ButtonView() \
-                    .setPos((0, 0)) \
-                    .setImageByPath("../res/image/player1.png") \
-                    .setScale((200, 100)) \
-                    .setText("소리") \
-                    .setTextPos((100, 100)),
-            "closeButton":
-                ButtonView() \
-                    .setPos((0, 0)) \
-                    .setImageByPath("../res/image/player1.png") \
-                    .setScale((200, 100)) \
-                    .setText("닫기") \
-                    .setTextPos((100, 100)),
-            "backButton":
-                ButtonView() \
-                    .setPos((0, 0)) \
-                    .setImageByPath("../res/image/player1.png") \
-                    .setScale((200, 100)) \
-                    .setText("뒤로") \
                     .setTextPos((100, 100))
         }
 
@@ -93,7 +72,7 @@ class GamePainter(Painter):
         settingButton = self._buttonList["settingButton"]
         screen = Container.screen
         screen.blit(IMG_BACKGROUND, (0, 0))
-        screen.blit(IMG_SETTING_BUTTON, (settingButton.getXPos(), settingButton.getYPos()))
+        screen.blit(settingButton.getImage(), (settingButton.getXPos(), settingButton.getYPos()))
 
 
     def getButtonViewList(self):

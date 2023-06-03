@@ -25,17 +25,19 @@ class GameActivity:
 
     def onMouseClick(self):
         settingButton = self.__buttonList["settingButton"]
+        lifeCycleManager = Container.container["lifeCycleManager"]
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (xMousePos, yMousePos) = pygame.mouse.get_pos()
                 self.createBullet()
                 if settingButton.getXPos() <= xMousePos <= settingButton.getXPos() + settingButton.getWidth() and settingButton.getYPos() <= yMousePos <= settingButton.getYPos() + settingButton.getHeight():
-                    LifeCycleManager.isPause = True
-                    LifeCycleManager.isSetting = True
-                    settingFragment()
+                    lifeCycleManager.isPause = True
+                    lifeCycleManager.isSetting = True
+                    settingFragment = SettingFragment()
+                    settingFragment.startSetting()
 
     def onKeyClick(self):
-        deltaTime = pygame.time.Clock().tick(60)
+        deltaTime = pygame.time.Clock().tick(DEFAULT_FRAME)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             if 0 <= Player.xPos - PLAYER_SPEED:
@@ -52,7 +54,6 @@ class GameActivity:
         if keys[pygame.K_SPACE]:
             self.createBullet()
         if keys[pygame.K_r]:
-            # print("onClickRBTN", Player.isSpecial)
             if Player.isSpecial:
                 if not Player.isSpecialing:
                     Player.beforeSpecialTime = time.time()
@@ -71,12 +72,13 @@ class GameActivity:
         hoJoonManager = container["hoJoonManager"]
         playerManager = container["playerManager"]
         stageManager = container["stageManager"]
-
-        while LifeCycleManager.isPlaying:
-            while not LifeCycleManager.isPause:
+        lifeCycleManager = container["lifeCycleManager"]
+        while lifeCycleManager.isPlaying:
+            while not lifeCycleManager.isPause:
                 # event
                 self.onKeyClick()
                 self.onMouseClick()
+                print("12345")
 
                 bulletManager.manageBullet()
                 if STAGES[StageManager.stage][0]: sangMinManager.createSangMin()
