@@ -1,22 +1,12 @@
 import random
+import math
 from src.util.constants import *
+
 SCREEN_WIDTH = 1440
 SCREEN_HEIGHT = 960
 HOJOON_HEIGHT = 30
 
 class Utils:
-    # 싱글턴
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, "_instance"):
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __init__(self, data):
-        cls = type(self)
-        if not hasattr(cls, "_init"):
-            self.data = data
-            cls._init = True
-
     # 닮음 비 & 원 방정식 이용
     def normalized(self, x, y):
         return x / ((x ** 2 + y ** 2) ** 0.5), y / ((x ** 2 + y ** 2) ** 0.5)
@@ -44,3 +34,6 @@ class Utils:
 
     def isObjectInMap(self, object):
         return -20 <= object.yPos <= SCREEN_HEIGHT and -20 <= object.xPos <= SCREEN_WIDTH
+
+    def adasd(self, degree):
+        return Utils.normalized(Utils, 1, math.tan(math.radians(degree)))

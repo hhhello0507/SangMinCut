@@ -1,24 +1,12 @@
 import time
-from src.util.constants import *
 from src.entity.HpPotion import *
 from src.entity.Player import *
-from src.manager.BulletManager import *
+
 
 class HpPotionManager:
     hpPotionList = []
     hpLoadTime = 0
     hpStartTime = time.time()
-
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, "_instance"):
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __init__(self, data):
-        cls = type(self)
-        if not hasattr(cls, "_init"):
-            self.data = data
-            cls._init = True
 
     def createHpPotion(self):
         now = time.time()

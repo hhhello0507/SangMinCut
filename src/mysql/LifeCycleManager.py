@@ -1,4 +1,4 @@
-class LifeManager:
+class LifeCycleManager:
     isMain = True
     isPlaying = False
     isPause = False

@@ -1,6 +1,6 @@
 from src.entity.Gal import *
 from src.entity.Player import *
-from src.manager.BulletManager import *
+from features.game.manager.BulletManager import *
 import time
 import random
 
@@ -8,17 +8,6 @@ class GalManager:
     galList = []
     galLoadTime = 0
     galStartTime = time.time()
-
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, "_instance"):
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __init__(self, data):
-        cls = type(self)
-        if not hasattr(cls, "_init"):
-            self.data = data
-            cls._init = True
 
     def manageGal(self):
         activeGalList = []

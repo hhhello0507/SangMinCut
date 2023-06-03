@@ -1,13 +1,16 @@
-from src.view.MainActivity import *
-from src.view.GameActivity import *
-from src.view.GameOverActivity import *
+from Container import container
+import pygame
+
+pygame.init()
+pygame.display.set_caption("SangMinCut!!")
+
+mainActivity = container["mainActivity"]
+gameActivity = container["gameActivity"]
+gameOverActivity = container["gameOverActivity"]
+
+lifeCycleManager = container["lifeCycleManager"]
 
 while True:
-    # print lifecycle status
-    LifeManager.printStatus(LifeManager)
-
-    # start activity
-    MainAcitivty.startMain(MainAcitivty)
-    GameActivity.startGame(GameActivity)
-    GameOverActivitiy.startGameOver(GameOverActivitiy)
-    
+    mainActivity.startMain()
+    gameActivity.startGame()
+    gameOverActivity.startGameOver()

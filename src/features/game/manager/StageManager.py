@@ -1,6 +1,4 @@
-from src.entity.Player import *
-from src.util.constants import *
-from src.manager.SangMinManager import *
+from features.game.manager.SangMinManager import *
 import time
 class StageManager:
     stage = 1

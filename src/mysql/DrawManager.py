@@ -1,28 +1,20 @@
-import pygame
 from src.util.constants import *
-from src.util.resource import *
-from src.entity.Player import *
-from src.wiget.Button import *
-from src.manager.BulletManager import *
-from src.manager.SangMinManager import *
-from src.manager.StageManager import *
-from src.manager.GalManager import *
-from src.manager.HojoonManager import *
-from src.manager.HpPotionManager import *
-from src.manager.XpPotionManager import *
+from src.wiget.ButtonView import *
+from features.game.manager.StageManager import *
+from features.game.manager.GalManager import *
+from features.game.manager.HoJoonManager import *
+from features.game.manager.HpPotionManager import *
+from features.game.manager.XpPotionManager import *
 import math
 
 class DrawManager:
-    startButton = Button(SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT)
-    settingButton = Button(0, 0, SETTING_BUTTON_WIDTH, SETTING_BUTTON_HEIGHT)
-    soundButton = Button(0, 0, SOUND_BUTTON_WIDTH, SOUND_BUTTON_HEIGHT)
-    closeButton = Button(100, 0, CLOSE_BUTTON_WIDTH, CLOSE_BUTTON_HEIGHT)
-    backButton = Button(200, 0, BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT)
-    toMainButton = Button(200, 0, TOMAIN_BUTTON_WIDTH, TOMAIN_BUTTON_HEIGHT)
-
-    display = None
-    screen = None
-    font = None
+    #
+    # toMainButton = ButtonView() \
+    #     .setPos((0, 0)) \
+    #     .setImageByPath("../res/image/player1.png") \
+    #     .setScale((100, 100)) \
+    #     .setText("설정") \
+    #     .setTextPos((100, 100))
 
     mainStartText = None
 
@@ -35,53 +27,19 @@ class DrawManager:
     stageBarText = None
     stageText = None
 
-
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, "_instance"):
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __init__(self, data):
-        cls = type(self)
-        if not hasattr(cls, "_init"):
-            self.data = data
-            cls._init = True
-
-    def init(self):
-        self.display = pygame.display
-        self.display.set_caption("SangMinCut!!")
-
-        self.screen = self.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-        self.font = pygame.font.Font("../res/font/arial.ttf", 30)
-        self.mainStartText = self.font.render("start", False, (20, 20, 20))
-    # updateGame
-
-
     # drawMain
-    def drawMain(self):
-        self.drawMainMap(self)
-
     # drawGame
     def drawGame(self):
         DrawUpdateManager.updateGame(DrawUpdateManager)
-        self.drawGameMap(self)
-        self.drawHPBar(self)
-        self.drawXPBar(self)
-        self.drawStage(self)
+        self.drawGameMap()
+        self.drawHPBar()
+        self.drawXPBar()
+        self.drawStage()
         self.display.update()
 
     def drawGameOver(self):
         self.drawGameOverMap(self)
         self.display.update()
-
-    def drawMainMap(self):
-        self.screen.blit(IMG_BUTTON, (self.startButton.xPos, self.startButton.yPos))
-        self.screen.blit(self.mainStartText,
-                             (self.startButton.xPos + 40, self.startButton.yPos + 20))
-        self.display.update()
-
-
 
     def drawGameMap(self):
         self.screen.blit(IMG_BACKGROUND, (0, 0))
@@ -93,7 +51,7 @@ class DrawManager:
             self.screen.blit(IMG_SANGMIN, (sangMin.xPos, sangMin.yPos))
         for gal in GalManager.galList:
             self.screen.blit(IMG_GAL, (gal.xPos, gal.yPos))
-        for hojoon in HojoonManager.hojoonList:
+        for hojoon in HoJoonManager.hojoonList:
             self.screen.blit(IMG_HOJOON, (hojoon.xPos, hojoon.yPos))
         for hpPotion in HpPotionManager.hpPotionList:
             self.screen.blit(IMG_HP_POTION, (hpPotion.xPos, hpPotion.yPos))
@@ -116,11 +74,12 @@ class DrawManager:
 
     # 임시 이미지
     def drawGameOverMap(self):
+        pass
         # 검열
         # self.screen.blit(IMG_GAMEOVER_BACKGROUND, (0, 0))
-        self.screen.blit(IMG_BUTTON, (self.startButton.xPos, self.startButton.yPos))
-        self.screen.blit(self.mainStartText,
-                             (self.startButton.xPos + 40, self.startButton.yPos + 20))
+        # MainContainer.Container.screen.blit(IMG_BUTTON, (self.startButton.xPos, self.startButton.yPos))
+        # self.screen.blit(self.mainStartText,
+        #                      (self.startButton.xPos + 40, self.startButton.yPos + 20))
 
 class DrawUpdateManager():
     def __new__(cls, *args, **kwargs):

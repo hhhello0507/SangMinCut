@@ -1,25 +1,14 @@
 from src.entity.Hojoon import *
 from src.entity.Player import *
-from src.manager.BulletManager import *
+from features.game.manager.BulletManager import *
 import time
 import random
 import math
 
-class HojoonManager:
+class HoJoonManager:
     hojoonList = []
     hojoonTime = 0
     hojoonStartTime = time.time()
-
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, "_instance"):
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __init__(self, data):
-        cls = type(self)
-        if not hasattr(cls, "_init"):
-            self.data = data
-            cls._init = True
 
     def manageHojoon(self):
         activeHojoonList = []
