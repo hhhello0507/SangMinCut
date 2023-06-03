@@ -1,22 +1,24 @@
-import Container
-from src.mysql.LifeCycleManager import *
+from features.game.manager.BladeManager import BladeManager, bladeInit
+from features.game.manager.GalManager import GalManager, galInit
+from features.game.manager.HoJoonManager import HoJoonManager, hoJoonInit
+from features.game.manager.HpPotionManager import HpPotionManager, hpPotionInit
 from features.game.manager.StageManager import *
+from features.game.manager.XpPotionManager import XpPotionManager, xpPotionInit
 from src.entity.Bullet import *
+from util.lifeCycle import lifeCycleInit
+
 
 class PlayerManager:
 
     def managePlayer(self):
-        lifeCycleManager = Container.container["lifeCycleManager"]
-        player = Container.container["player"]
         if Player.playerHp <= 0:
-            lifeCycleManager.isPause = True
+            lifeCycleManager = Container.container["lifeCycleManager"]
+            self.initAll()
+            lifeCycleManager.isMain = False
             lifeCycleManager.isPlaying = False
-            lifeCycleManager.isSetting = False
+            lifeCycleManager.isPause = True
             lifeCycleManager.isGameOver = True
-            player.initPlayer()
-            BulletManager.bulletList.clear()
-            SangMinManager.sangMinList.clear()
-            StageManager.stage = 1
+
         if Player.playerHp > PLAYER_INIT_HP:
             Player.playerHp = PLAYER_INIT_HP
         if Player.playerXp >= Player.playerMaxXp:
@@ -36,3 +38,17 @@ class PlayerManager:
                 Player.specialCnt = PLAYER_SPECIAL_BULLET_SHOOT_CNT
                 Player.isSpecialing = False
                 Player.isSpecial = False
+
+    def initAll(self):
+        gameOverActivity = Container.container["gameOverActivity"]
+        lifeCycleInit()
+        playerInit()
+        bulletInit()
+        sangMinInit()
+        stageInit()
+        gameOverActivity.init()
+        bladeInit()
+        galInit()
+        hoJoonInit()
+        hpPotionInit()
+        xpPotionInit()

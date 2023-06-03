@@ -2,22 +2,31 @@ from src.util.constants import *
 
 
 class Player:
-    xPos = PLAYER_INIT_XPOS
-    yPos = PLAYER_INIT_YPOS
-    playerHp = PLAYER_INIT_HP
-    playerXp = 0
-    playerMaxXp = PLAYER_INIT_MAX_XP
-    isSpecial = False
-    isSpecialing = False
-    specialCnt = PLAYER_SPECIAL_BULLET_SHOOT_CNT
+    xPos = None
+    yPos = None
+    playerHp = None
+    playerXp = None
+    playerMaxXp = None
+    isSpecial = None
+    isSpecialing = None
+    specialCnt = None
     beforeSpecialTime = None
 
-    def initPlayer(self):
-        self.xPos = PLAYER_INIT_XPOS
-        self.yPos = PLAYER_INIT_YPOS
-        self.playerHp = PLAYER_INIT_HP
-        self.playerXp = 0
-        self.playerMaxXp = PLAYER_INIT_MAX_XP
+def playerInit():
+    Player.xPos = PLAYER_INIT_XPOS
+    Player.yPos = PLAYER_INIT_YPOS
+    Player.playerHp = PLAYER_INIT_HP
+    Player.playerXp = 0
+    Player.playerMaxXp = PLAYER_INIT_MAX_XP
+    Player.isSpecial = False
+    Player.isSpecialing = False
+    Player.specialCnt = PLAYER_SPECIAL_BULLET_SHOOT_CNT
+    Player.beforeSpecialTime = None
 
+def playerToString():
+    return f"""
+pos - {Player.xPos}, {Player.yPos}
+hp - {Player.playerHp} / {"PLAYER_INIT_HP"}
+xp - {Player.playerXp} / {Player.playerMaxXp}
 
-
+    """

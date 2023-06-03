@@ -9,10 +9,11 @@ class GalManager:
     galLoadTime = 0
     galStartTime = time.time()
 
+
     def manageGal(self):
         activeGalList = []
-        for (idx, gal) in enumerate(self.galList):
-            if not Utils.isObjectInMap(Utils, gal):
+        for (idx, gal) in enumerate(GalManager.galList):
+            if not isObjectInMap(gal):
                 gal.isActive = False
             # 플레이어와 충돌
             if gal.objectRect.colliderect(pygame.Rect(Player.xPos, Player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
@@ -29,17 +30,17 @@ class GalManager:
             gal.yPos = gal.a * (gal.xPos - gal.s) ** 2 + gal.h
             if gal.isActive:
                 activeGalList.append(gal)
-                self.galList = activeGalList
+                GalManager.galList = activeGalList
             if gal.yPos > SCREEN_HEIGHT:
-                Utils.setGalQuadraticGraph(Utils, gal)
+                setGalQuadraticGraph(gal)
                 gal.yPos = SCREEN_HEIGHT - 10
         self.galList = activeGalList
 
     def createGal(self):
         now = time.time()
-        if now - self.galStartTime >= self.galLoadTime:
-            self.galLoadTime = random.uniform(GAL_CREATE_TIME_1, GAL_CREATE_TIME_2)
-            self.galStartTime = time.time()
+        if now - GalManager.galStartTime >= GalManager.galLoadTime:
+            GalManager.galLoadTime = random.uniform(GAL_CREATE_TIME_1, GAL_CREATE_TIME_2)
+            GalManager.galStartTime = time.time()
             gal = Gal(0, SCREEN_HEIGHT)
             if random.randint(0, 1):
                 gal.d = True
@@ -49,7 +50,12 @@ class GalManager:
                 gal.d = False
                 gal.xPos = SCREEN_WIDTH - 50
                 gal.xMove = -GAL_SPEED
-            Utils.setGalQuadraticGraph(Utils, gal)
+            setGalQuadraticGraph(gal)
 
             # print(gal.a, gal.s, gal.h)
-            self.galList.append(gal)
+            GalManager.galList.append(gal)
+
+def galInit():
+    GalManager.galList.clear()
+    GalManager.galLoadTime = 0
+    GalManager.galStartTime = time.time()

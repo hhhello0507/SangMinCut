@@ -1,6 +1,8 @@
-from src.mysql.Painter import Painter
+from util.painter import Painter
 from src.wiget.ButtonView import ButtonView
 from src.util.constants import *
+from src.util.resource import *
+
 
 class MainPainter(Painter):
     def init(self):
@@ -16,3 +18,11 @@ class MainPainter(Painter):
 
     def getButtonViewList(self):
         return self._buttonViewList
+
+    def paint(self):
+        self.__paintBackground()
+        super().paint()
+
+    def __paintBackground(self):
+        screen = Container.screen
+        screen.blit(IMG_BACKGROUND, (0, 0))

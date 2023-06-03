@@ -1,22 +1,18 @@
-import Container
-from Container import *
 from features.game.setting.SettingFragment import *
 from features.game.manager.PlayerManager import *
-from src.mysql.DrawManager import *
 
 
 # TODO: SOUND ON/OFF, CLOSE - 나가기, BACK - 뒤로가기
 class GameActivity:
     def init(self):
         container = Container.container
-        self.__utils = container["utils"]
         self.__gamePainter = container["gamePainter"]
         self.__gamePainter.init()
         self.__buttonList = self.__gamePainter.getButtonViewList()
 
     def createBullet(self):
         (xMousePos, yMousePos) = pygame.mouse.get_pos()
-        (normalizedXPos, normalizedYPos) = self.__utils.normalized(Player.xPos + PLAYER_WIDTH / 2 - xMousePos,
+        (normalizedXPos, normalizedYPos) = normalized(Player.xPos + PLAYER_WIDTH / 2 - xMousePos,
                                                                    Player.yPos + PLAYER_HEIGHT / 2 - yMousePos)
         bullet = Bullet(Player.xPos + PLAYER_WIDTH / 2, Player.yPos + PLAYER_HEIGHT / 2,
                         -normalizedXPos * BULLET_SPEED,
@@ -24,17 +20,18 @@ class GameActivity:
         BulletManager.bulletList.append(bullet)
 
     def onMouseClick(self):
-        settingButton = self.__buttonList["settingButton"]
+        settingButtonView = self.__buttonList["settingButtonView"]
         lifeCycleManager = Container.container["lifeCycleManager"]
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
-                (xMousePos, yMousePos) = pygame.mouse.get_pos()
                 self.createBullet()
-                if settingButton.getXPos() <= xMousePos <= settingButton.getXPos() + settingButton.getWidth() and settingButton.getYPos() <= yMousePos <= settingButton.getYPos() + settingButton.getHeight():
+                if settingButtonView.isOnClick(pygame.mouse.get_pos()):
                     lifeCycleManager.isPause = True
                     lifeCycleManager.isSetting = True
                     settingFragment = SettingFragment()
                     settingFragment.startSetting()
+            if event.type == pygame.QUIT:
+                pygame.quit()
 
     def onKeyClick(self):
         deltaTime = pygame.time.Clock().tick(DEFAULT_FRAME)
@@ -78,14 +75,13 @@ class GameActivity:
                 # event
                 self.onKeyClick()
                 self.onMouseClick()
-                print("12345")
 
                 bulletManager.manageBullet()
-                if STAGES[StageManager.stage][0]: sangMinManager.createSangMin()
-                if STAGES[StageManager.stage][1]: galManager.createGal()
-                if STAGES[StageManager.stage][2]: hpPotionManager.createHpPotion()
-                if STAGES[StageManager.stage][3]: xpPotionManager.createXpPotion()
-                if STAGES[StageManager.stage][4]: hoJoonManager.createHojoon()
+                if STAGES[stageManager.stage][0]: sangMinManager.createSangMin()
+                if STAGES[stageManager.stage][1]: galManager.createGal()
+                if STAGES[stageManager.stage][2]: hpPotionManager.createHpPotion()
+                if STAGES[stageManager.stage][3]: xpPotionManager.createXpPotion()
+                if STAGES[stageManager.stage][4]: hoJoonManager.createHojoon()
                 hpPotionManager.manageHpPotion()
                 playerManager.managePlayer()
                 galManager.manageGal()
@@ -97,3 +93,5 @@ class GameActivity:
                 # draw
                 # DrawManager.drawGame(DrawManager)
                 self.__gamePainter.paint()
+                self.__gamePainter.update()
+                Container.display.update()

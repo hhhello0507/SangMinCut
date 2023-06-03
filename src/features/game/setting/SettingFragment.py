@@ -1,7 +1,7 @@
-import Container
-from src.mysql.LifeCycleManager import *
-from src.mysql.DrawManager import *
 import pygame
+
+import Container
+
 
 class SettingFragment:
     def init(self):

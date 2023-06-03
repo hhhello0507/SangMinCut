@@ -1,14 +1,14 @@
 import Container
 from src.entity.Player import *
-from src.mysql.Painter import *
+from util.painter import *
 from src.wiget.ButtonView import *
 from src.util.resource import *
-
+import time
 
 class GamePainter(Painter):
     def init(self):
         self._buttonList = {
-            "settingButton":
+            "settingButtonView":
                 ButtonView() \
                     .setPos((0, 0)) \
                     .setImageByPath("../res/image/player1.png") \
@@ -18,15 +18,18 @@ class GamePainter(Painter):
         }
 
         self._textViewList = {
-            "hpText":
+            "hpTextView":
                 TextView() \
-                    .setPos((Player.xPos, Player.yPos)),
-            "xpText":
+                    .setPos((Player.xPos, Player.yPos))
+                    .setTextColor((255, 255, 0)),
+            "xpTextView":
                 TextView() \
-                    .setPos((Player.xPos, Player.yPos + 30)),
-            "stageText":
+                    .setPos((20, SCREEN_HEIGHT - 40)) \
+                    .setTextColor((255, 255, 0)),
+            "stageTextView":
                 TextView() \
-                    .setPos((SCREEN_WIDTH / 2 - 100, 20))
+                    .setPos((SCREEN_WIDTH / 2 - 230, 20)) \
+                    .setTextColor((255, 255, 0))
         }
 
     def paint(self):
@@ -39,7 +42,6 @@ class GamePainter(Painter):
         self.__paintGal()
         self.__paintXpPotion()
         self.__paintHpPotion()
-        Container.display.update()
 
     def __paintSangMin(self):
         for sangMin in Container.container["sangMinManager"].sangMinList:
@@ -69,11 +71,29 @@ class GamePainter(Painter):
         Container.screen.blit(IMG_PLAYER, (Player.xPos, Player.yPos))
 
     def __paintBackground(self):
-        settingButton = self._buttonList["settingButton"]
+        settingButton = self._buttonList["settingButtonView"]
         screen = Container.screen
         screen.blit(IMG_BACKGROUND, (0, 0))
         screen.blit(settingButton.getImage(), (settingButton.getXPos(), settingButton.getYPos()))
 
+    def update(self):
+        self.__updateHpBar()
+        self.__updateXpBar()
+        self.__updateStageBar()
+
+    def __updateHpBar(self):
+        hpTextView = self._textViewList["hpTextView"]
+        hpTextView.setPos((Player.xPos + 20, Player.yPos))
+        hpTextView.setText(f"{Player.playerHp}/{PLAYER_INIT_HP}")
+
+    def __updateXpBar(self):
+        xpTextView = self._textViewList["xpTextView"]
+        xpTextView.setText("*" * (int(Player.playerXp * (PLAYER_XP_TEXT_WIDTH / Player.playerMaxXp))) + "-" * (int((Player.playerMaxXp - Player.playerXp) *  (PLAYER_XP_TEXT_WIDTH / Player.playerMaxXp))))
+
+    def __updateStageBar(self):
+        stageManager = Container.container["stageManager"]
+        stageTextView = self._textViewList["stageTextView"]
+        stageTextView.setText(f"{stageManager.stage} STAGE :: NEXT STAGE: {math.ceil(stageManager.beforeTime + stageManager.nextStageTime - time.time())}")
 
     def getButtonViewList(self):
         return self._buttonList

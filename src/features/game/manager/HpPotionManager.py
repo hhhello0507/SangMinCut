@@ -10,9 +10,9 @@ class HpPotionManager:
 
     def createHpPotion(self):
         now = time.time()
-        if now - self.hpStartTime > self.hpLoadTime:
-            self.hpStartTime = now
-            self.hpLoadTime = random.uniform(HP_CREATE_TIME_1, HP_CREATE_TIME_2)
+        if now - HpPotionManager.hpStartTime > HpPotionManager.hpLoadTime:
+            HpPotionManager.hpStartTime = now
+            HpPotionManager.hpLoadTime = random.uniform(HP_CREATE_TIME_1, HP_CREATE_TIME_2)
             (hpPotionXPos, hpPotionYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
             # (플레이어 <-> hp포션) 사이 일정한 거리 이상에서 생성되도록
             while ((hpPotionXPos - Player.xPos) ** 2 + (hpPotionYPos - Player.yPos) ** 2) ** 0.5 < 300:
@@ -22,7 +22,7 @@ class HpPotionManager:
 
     def manageHpPotion(self):
         activeHpPotionList = []
-        for (idx, hpPotion) in enumerate(self.hpPotionList):
+        for (idx, hpPotion) in enumerate(HpPotionManager.hpPotionList):
             # 플레이어와 충돌
             if hpPotion.objectRect.colliderect(pygame.Rect(Player.xPos, Player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
                 hpPotion.isActive = False
@@ -30,4 +30,9 @@ class HpPotionManager:
                 print("PlayerHP : +%d" % (Player.playerHp))
             if hpPotion.isActive:
                 activeHpPotionList.append(hpPotion)
-        self.hpPotionList = activeHpPotionList
+        HpPotionManager.hpPotionList = activeHpPotionList
+
+def hpPotionInit():
+    HpPotionManager.hpPotionList.clear()
+    HpPotionManager.hpStartTime = 0
+    HpPotionManager.hpStartTime = time.time()

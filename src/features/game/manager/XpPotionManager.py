@@ -10,19 +10,19 @@ class XpPotionManager:
 
     def createXpPotion(self):
         now = time.time()
-        if now - self.xpStartTime > self.xpLoadTime:
-            self.xpStartTime = now
-            self.xpLoadTime = random.uniform(XP_CREATE_TIME_1, XP_CREATE_TIME_2)
+        if now - XpPotionManager.xpStartTime > XpPotionManager.xpLoadTime:
+            XpPotionManager.xpStartTime = now
+            XpPotionManager.xpLoadTime = random.uniform(XP_CREATE_TIME_1, XP_CREATE_TIME_2)
             (xpPotionXPos, xpPotionYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
             # (플레이어 <-> mp포션) 사이 일정한 거리 이상에서 생성되도록
             while ((xpPotionXPos - Player.xPos) ** 2 + (xpPotionYPos - Player.yPos) ** 2) ** 0.5 < 300:
                 (xpPotionXPos, xpPotionYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
             xpPotion = XpPotion(xpPotionXPos + XP_POTION_WIDTH / 2, xpPotionYPos + XP_POTION_HEIGHT / 2)
-            self.xpPotionList.append(xpPotion)
+            XpPotionManager.xpPotionList.append(xpPotion)
 
     def manageXpPotion(self):
         activeXpPotionList = []
-        for (idx, xpPotion) in enumerate(self.xpPotionList):
+        for (idx, xpPotion) in enumerate(XpPotionManager.xpPotionList):
             # 플레이어와 충돌
             if xpPotion.objectRect.colliderect(pygame.Rect(Player.xPos, Player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
                 xpPotion.isActive = False
@@ -30,4 +30,9 @@ class XpPotionManager:
                 print("PlayerXP : +%d" % (Player.playerXp))
             if xpPotion.isActive:
                 activeXpPotionList.append(xpPotion)
-        self.xpPotionList = activeXpPotionList
+        XpPotionManager.xpPotionList = activeXpPotionList
+
+def xpPotionInit():
+    XpPotionManager.xpPotionList.clear()
+    XpPotionManager.xpLoadTime = 0
+    XpPotionManager.xpStartTime = time.time()

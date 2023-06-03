@@ -1,5 +1,6 @@
 import Container
-from src.mysql.LifeCycleManager import *
+from src.entity.Player import playerInit
+from src.util.lifeCycle import *
 import pygame
 
 
@@ -11,17 +12,23 @@ class MainActivity:
 
     def onMouseClick(self):
         startButton = self.__buttonViewList["startButton"]
+        lifeCycleManager = Container.container["lifeCycleManager"]
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousePos = pygame.mouse.get_pos()
                 if startButton.isOnClick(mousePos):
-                    LifeCycleManager.isMain = False
-                    LifeCycleManager.isPlaying = True
-                    LifeCycleManager.isPause = False
+                    lifeCycleManager.isMain = False
+                    lifeCycleManager.isPlaying = True
+                    lifeCycleManager.isPause = False
+                    playerInit()
+            if event.type == pygame.QUIT:
+                pygame.quit()
 
     def startMain(self):
-        self.init()
-        while LifeCycleManager.isMain:
+        lifeCycleManager = Container.container["lifeCycleManager"]
+        if lifeCycleManager.isMain:
+            self.init()
+        while lifeCycleManager.isMain:
             self.onMouseClick()
             self.__mainPainter.paint()
             Container.display.update()

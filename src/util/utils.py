@@ -1,39 +1,60 @@
 import random
 import math
+
+import Container
+from entity.Player import playerToString
 from src.util.constants import *
 
 SCREEN_WIDTH = 1440
 SCREEN_HEIGHT = 960
 HOJOON_HEIGHT = 30
 
-class Utils:
-    # 닮음 비 & 원 방정식 이용
-    def normalized(self, x, y):
-        return x / ((x ** 2 + y ** 2) ** 0.5), y / ((x ** 2 + y ** 2) ** 0.5)
 
-    # 이차함수 이용
-    def getInclination(self, x, y, h, s):
-        return (y - h) / ((x - s) ** 2)
+# 닮음 비 & 원 방정식 이용
+def normalized(x, y):
+    return x / ((x ** 2 + y ** 2) ** 0.5), y / ((x ** 2 + y ** 2) ** 0.5)
 
-    # 갈 이차함수 계산
-    def setGalQuadraticGraph(self, gal):
-        if gal.d:
-            gal.s = gal.xPos + random.uniform(200, 300)
-        else:
-            gal.s = gal.xPos - random.uniform(200, 300)
-        gal.h = random.uniform(100, 300)
-        gal.a = self.getInclination(self, gal.xPos, gal.yPos, gal.h, gal.s)
+# 이차함수 이용
+def getInclination(x, y, h, s):
+    return (y - h) / ((x - s) ** 2)
 
-    def setHojoonThreeSin(self, hojoon):
-        global SCREEN_HEIGHT, SCREEN_WIDTH, HOJOON_HEIGHT
-        n = 0.1
-        hojoon.a = random.uniform(-n, n)
-        hojoon.b = random.uniform(-n, n)
-        hojoon.c = random.uniform(-n, n)
-        hojoon.h = random.uniform(SCREEN_HEIGHT / 5, SCREEN_HEIGHT - SCREEN_HEIGHT / 5 - HOJOON_HEIGHT)
+# 갈 이차함수 계산
+def setGalQuadraticGraph(gal):
+    if gal.d:
+        gal.s = gal.xPos + random.uniform(200, 300)
+    else:
+        gal.s = gal.xPos - random.uniform(200, 300)
+    gal.h = random.uniform(100, 300)
+    gal.a = getInclination(gal.xPos, gal.yPos, gal.h, gal.s)
 
-    def isObjectInMap(self, object):
-        return -20 <= object.yPos <= SCREEN_HEIGHT and -20 <= object.xPos <= SCREEN_WIDTH
+def setHojoonThreeSin(hojoon):
+    global SCREEN_HEIGHT, SCREEN_WIDTH, HOJOON_HEIGHT
+    n = 0.1
+    hojoon.a = random.uniform(-n, n)
+    hojoon.b = random.uniform(-n, n)
+    hojoon.c = random.uniform(-n, n)
+    hojoon.h = random.uniform(SCREEN_HEIGHT / 5, SCREEN_HEIGHT - SCREEN_HEIGHT / 5 - HOJOON_HEIGHT)
 
-    def adasd(self, degree):
-        return Utils.normalized(Utils, 1, math.tan(math.radians(degree)))
+def isObjectInMap(object):
+    return -20 <= object.yPos <= SCREEN_HEIGHT and -20 <= object.xPos <= SCREEN_WIDTH
+
+def adasd(degree):
+    return normalized(1, math.tan(math.radians(degree)))
+
+def printStatus():
+    lifeCycleManager = Container.container["lifeCycleManager"]
+    bulletManager = Container.container["bulletManager"]
+    sangMinManager = Container.container["sangMinManager"]
+
+    print(f"""
+-------------------------------------
+isMain:  {lifeCycleManager.isMain}
+isPlaying: {lifeCycleManager.isPlaying}
+isPause: {lifeCycleManager.isPause}
+isSetting: {lifeCycleManager.isSetting}
+
+player: {playerToString()}
+bullets: {bulletManager.bulletList}
+sangMins: {sangMinManager.sangMinList}
+-------------------------------------
+""")

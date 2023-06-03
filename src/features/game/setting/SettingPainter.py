@@ -1,4 +1,4 @@
-from src.mysql.Painter import *
+from util.painter import *
 from src.wiget.ButtonView import ButtonView
 
 

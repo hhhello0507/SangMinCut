@@ -25,6 +25,6 @@ class MoveEntity:
 
     # 이동할 좌표, 속력 -> move값 설정
     def calcMove(self, xPos, yPos, speed):
-        (self.xMove, self.yMove) = Utils.normalized(Utils, xPos - self.xPos, yPos - self.yPos)
+        (self.xMove, self.yMove) = normalized(xPos - self.xPos, yPos - self.yPos)
         self.xMove *= speed
         self.yMove *= speed
