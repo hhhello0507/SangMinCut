@@ -31,7 +31,6 @@ class DrawManager:
     # drawGame
     def drawGame(self):
         DrawUpdateManager.updateGame(DrawUpdateManager)
-        self.drawGameMap()
         self.drawHPBar()
         self.drawXPBar()
         self.drawStage()
@@ -40,23 +39,6 @@ class DrawManager:
     def drawGameOver(self):
         self.drawGameOverMap(self)
         self.display.update()
-
-    def drawGameMap(self):
-        self.screen.blit(IMG_BACKGROUND, (0, 0))
-        self.screen.blit(IMG_PLAYER, (Player.xPos, Player.yPos))
-        self.screen.blit(IMG_SETTING_BUTTON, (self.settingButton.xPos, self.settingButton.yPos))
-        for bullet in BulletManager.bulletList:
-            self.screen.blit(IMG_BULLET, (bullet.xPos, bullet.yPos))
-        for sangMin in SangMinManager.sangMinList:
-            self.screen.blit(IMG_SANGMIN, (sangMin.xPos, sangMin.yPos))
-        for gal in GalManager.galList:
-            self.screen.blit(IMG_GAL, (gal.xPos, gal.yPos))
-        for hojoon in HoJoonManager.hojoonList:
-            self.screen.blit(IMG_HOJOON, (hojoon.xPos, hojoon.yPos))
-        for hpPotion in HpPotionManager.hpPotionList:
-            self.screen.blit(IMG_HP_POTION, (hpPotion.xPos, hpPotion.yPos))
-        for xpPotion in XpPotionManager.xpPotionList:
-            self.screen.blit(IMG_XP_POTION, (xpPotion.xPos, xpPotion.yPos))
 
     def drawHPBar(self):
         self.screen.blit(self.hpBarText, (Player.xPos, Player.yPos))

@@ -50,7 +50,7 @@ class GameActivity:
             if Player.yPos + PLAYER_SPEED <= SCREEN_HEIGHT - PLAYER_HEIGHT:
                 Player.yPos += PLAYER_SPEED * deltaTime
         if keys[pygame.K_SPACE]:
-            self.createBullet(self)
+            self.createBullet()
         if keys[pygame.K_r]:
             # print("onClickRBTN", Player.isSpecial)
             if Player.isSpecial:

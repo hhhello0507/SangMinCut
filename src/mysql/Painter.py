@@ -1,14 +1,12 @@
-import pygame
-
 import Container
 from src.wiget.ImageView import ImageView
 
 
 class Painter:
     def __init__(self):
-        self._buttonList = {}
-        self._imageList = {}
-        self._textList = {}
+        self._buttonViewList = {}
+        self._imageViewList = {}
+        self._textViewList = {}
 
     def paint(self):
         self.__paintButtons()
@@ -17,16 +15,15 @@ class Painter:
         Container.display.update()
 
     def __paintButtons(self):
-        for button in self._buttonList.values():
-            # print(button.getImage())
+        for button in self._buttonViewList.values():
             self.__paintButtonView(button)
 
     def __paintImages(self):
-        for image in self._imageList:
+        for image in self._imageViewList:
             self.__paintImageView(image)
 
     def __paintTexts(self):
-        for text in self._textList:
+        for text in self._textViewList:
             self.__paintTextView(text)
 
     def __paintButtonView(self, button):
