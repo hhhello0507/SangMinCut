@@ -10,8 +10,8 @@ class Painter:
 
     def paint(self):
         self.__paintButtons()
-        self.__paintTexts()
         self.__paintImages()
+        self.__paintTexts()
 
     def __paintButtons(self):
         for button in self._buttonViewList.values():

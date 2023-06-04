@@ -31,7 +31,7 @@ IMG_HOJOON = pygame.transform.scale(IMG_HOJOON, (HOJOON_WIDTH, HOJOON_HEIGHT))
 IMG_HP_POTION = pygame.image.load("../res/image/player1.png")
 IMG_HP_POTION = pygame.transform.scale(IMG_HP_POTION, (HP_POTION_WIDTH, HP_POTION_HEIGHT))
 
-IMG_XP_POTION = pygame.image.load("../res/image/player1.png")
+IMG_XP_POTION = pygame.image.load("../res/image/xp_potion.png")
 IMG_XP_POTION = pygame.transform.scale(IMG_XP_POTION, (XP_POTION_WIDTH, XP_POTION_HEIGHT))
 
 # gameOver # 검열

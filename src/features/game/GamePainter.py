@@ -15,6 +15,14 @@ class GamePainter(Painter):
                     .setScale((100, 100))
         }
 
+        self._imageViewList = {
+            "stageImageView":
+                ImageView() \
+                    .setPos((491, 60)) \
+                    .setScale((457, 93)) \
+                    .setImageByPath("../res/image/stage.png")
+        }
+
         self._textViewList = {
             "hpTextView":
                 TextView() \
@@ -26,20 +34,21 @@ class GamePainter(Painter):
                     .setTextColor((255, 255, 0)),
             "stageTextView":
                 TextView() \
-                    .setPos((SCREEN_WIDTH / 2 - 230, 20)) \
-                    .setTextColor((255, 255, 0))
+                    .setPos((SCREEN_WIDTH / 2 - 100, 84)) \
+                    .setTextColor((0, 0, 0)) \
+                    .setTextSize(50)
         }
 
     def paint(self):
         self.__paintBackground()
         self.__paintPlayer()
-        super().paint()
         self.__paintSangMin()
         self.__paintBullet()
         self.__paintHoJoon()
         self.__paintGal()
         self.__paintXpPotion()
         self.__paintHpPotion()
+        super().paint()
 
     def __paintSangMin(self):
         for sangMin in Container.container["sangMinManager"].sangMinList:
@@ -69,10 +78,8 @@ class GamePainter(Painter):
         Container.screen.blit(IMG_PLAYER, (Player.xPos, Player.yPos))
 
     def __paintBackground(self):
-        # pauseButton = self._buttonList["pauseButtonView"]
         screen = Container.screen
         screen.blit(IMG_GAME_BACKGROUND1, (0, 0))
-        # screen.blit(pauseButton.getImage(), (pauseButton.getXPos(), pauseButton.getYPos()))
 
     def update(self):
         self.__updateHpBar()
@@ -91,7 +98,7 @@ class GamePainter(Painter):
     def __updateStageBar(self):
         stageManager = Container.container["stageManager"]
         stageTextView = self._textViewList["stageTextView"]
-        stageTextView.setText(f"{stageManager.stage} STAGE :: NEXT STAGE: {math.ceil(stageManager.beforeTime + stageManager.nextStageTime - time.time())}")
+        stageTextView.setText(f"STAGE {stageManager.stage}")
 
     def getButtonViewList(self):
         return self._buttonViewList

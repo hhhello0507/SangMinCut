@@ -3,7 +3,7 @@ from src.features.game.manager.HoJoonManager import HoJoonManager
 from src.features.game.manager.HpPotionManager import HpPotionManager
 from src.features.game.manager.GalManager import GalManager
 from src.features.game.manager.XpPotionManager import XpPotionManager
-from src.features.game.setting.PausePainter import *
+from src.features.game.pause.PausePainter import *
 from src.features.game.manager.BladeManager import *
 from src.features.game.GamePainter import *
 from src.features.main.MainPainter import *
@@ -22,6 +22,8 @@ container = {
     # game
     "gameActivity": GameActivity(),
     "gamePainter": GamePainter(),
+
+    # game-manager
     "bulletManager": BulletManager(),
     "galManager": GalManager(),
     "hoJoonManager": HoJoonManager(),
@@ -39,8 +41,6 @@ container = {
     # gameOver
     "gameOverActivity": GameOverActivity(),
     "gameOverPainter": GameOverPainter()
-
-
 }
 
 display = pygame.display

@@ -1,4 +1,4 @@
-from features.game.setting.PauseFragment import *
+from features.game.pause.PauseFragment import *
 from features.game.manager.PlayerManager import *
 
 
