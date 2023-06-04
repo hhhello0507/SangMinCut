@@ -46,7 +46,6 @@ class SangMinManager:
             sangMin = SangMin(sangMinXPos + SANGMIN_WIDTH / 2, sangMinYPos + SANGMIN_HEIGHT / 2)
             SangMinManager.sangMinList.append(sangMin)
 
-
 def sangMinInit():
     SangMinManager.sangMinLoadTime = 0
     SangMinManager.sangMinStartTime = time.time()

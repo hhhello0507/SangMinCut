@@ -7,6 +7,9 @@ IMG_MAIN_BACKGROUND = pygame.transform.scale(IMG_MAIN_BACKGROUND, (SCREEN_WIDTH,
 IMG_GAME_BACKGROUND1 = pygame.image.load("../res/image/game_background1.png")
 IMG_GAME_BACKGROUND1 = pygame.transform.scale(IMG_GAME_BACKGROUND1, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
+IMG_GAMEOVER_BACKGROUND = pygame.image.load("../res/image/gameover_background.png")
+IMG_GAMEOVER_BACKGROUND = pygame.transform.scale(IMG_GAMEOVER_BACKGROUND, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
 IMG_BACKGROUND = pygame.image.load("../res/image/background.jpg")
 IMG_BACKGROUND = pygame.transform.scale(IMG_BACKGROUND, (SCREEN_WIDTH, SCREEN_HEIGHT))
 

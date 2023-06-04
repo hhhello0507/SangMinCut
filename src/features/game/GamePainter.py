@@ -7,14 +7,12 @@ import time
 
 class GamePainter(Painter):
     def init(self):
-        self._buttonList = {
-            "settingButtonView":
+        self._buttonViewList = {
+            "pauseButtonView":
                 ButtonView() \
-                    .setPos((0, 0)) \
-                    .setImageByPath("../res/image/player1.png") \
-                    .setScale((200, 100)) \
-                    .setText("설정") \
-                    .setTextPos((100, 100))
+                    .setPos((1300, 48)) \
+                    .setImageByPath("../res/image/btn_pause.png") \
+                    .setScale((100, 100))
         }
 
         self._textViewList = {
@@ -71,10 +69,10 @@ class GamePainter(Painter):
         Container.screen.blit(IMG_PLAYER, (Player.xPos, Player.yPos))
 
     def __paintBackground(self):
-        settingButton = self._buttonList["settingButtonView"]
+        # pauseButton = self._buttonList["pauseButtonView"]
         screen = Container.screen
         screen.blit(IMG_GAME_BACKGROUND1, (0, 0))
-        screen.blit(settingButton.getImage(), (settingButton.getXPos(), settingButton.getYPos()))
+        # screen.blit(pauseButton.getImage(), (pauseButton.getXPos(), pauseButton.getYPos()))
 
     def update(self):
         self.__updateHpBar()
@@ -84,7 +82,7 @@ class GamePainter(Painter):
     def __updateHpBar(self):
         hpTextView = self._textViewList["hpTextView"]
         hpTextView.setPos((Player.xPos + 20, Player.yPos))
-        hpTextView.setText(f"{Player.playerHp}/{PLAYER_INIT_HP}")
+        hpTextView.setText(f"{Player.playerHp} / {PLAYER_INIT_HP}")
 
     def __updateXpBar(self):
         xpTextView = self._textViewList["xpTextView"]
@@ -96,4 +94,4 @@ class GamePainter(Painter):
         stageTextView.setText(f"{stageManager.stage} STAGE :: NEXT STAGE: {math.ceil(stageManager.beforeTime + stageManager.nextStageTime - time.time())}")
 
     def getButtonViewList(self):
-        return self._buttonList
+        return self._buttonViewList

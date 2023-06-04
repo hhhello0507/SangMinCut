@@ -12,22 +12,21 @@ class GameOverActivity:
         self.gameOverPainter = container["gameOverPainter"]
         self.gameOverPainter.init()
         self.__buttonViewList = self.gameOverPainter.getButtonViewList()
+        self.__isDraw = False
 
     def onMouseClick(self):
-        toMainButtonView = self.__buttonViewList["toMainButtonView"]
+        toMainButtonView = self.__buttonViewList["homeButtonView"]
         replayButtonView = self.__buttonViewList["replayButtonView"]
         lifeCycleManager = Container.container["lifeCycleManager"]
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousePos = pygame.mouse.get_pos()
                 if toMainButtonView.isOnClick(mousePos):
-                    print(0)
                     lifeCycleManager.isGameOverActivity = False
                     lifeCycleManager.isMainActivity = True
                     playerInit()
                     printStatus()
                 if replayButtonView.isOnClick(mousePos):
-                    print(1)
                     lifeCycleManager.isGameOverActivity = False
                     lifeCycleManager.isGameActivity = True
                     lifeCycleManager.isPause = False
@@ -39,7 +38,10 @@ class GameOverActivity:
     def startGameOver(self):
         gameOverPainter = Container.container["gameOverPainter"]
         lifeCycleManager = Container.container["lifeCycleManager"]
+        if lifeCycleManager.isGameOverActivity:
+            if not self.__isDraw:
+                gameOverPainter.paint()
+                Container.display.update()
+                self.__isDraw = True
         while lifeCycleManager.isGameOverActivity:
             self.onMouseClick()
-            gameOverPainter.paint()
-            Container.display.update()

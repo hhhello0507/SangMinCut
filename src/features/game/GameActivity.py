@@ -20,7 +20,7 @@ class GameActivity:
         BulletManager.bulletList.append(bullet)
 
     def onMouseClick(self):
-        settingButtonView = self.__buttonList["settingButtonView"]
+        settingButtonView = self.__buttonList["pauseButtonView"]
         lifeCycleManager = Container.container["lifeCycleManager"]
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -59,7 +59,7 @@ class GameActivity:
                     Player.playerXp = 0
 
     def startGame(self):
-        self.init()
+        # self.init()
         container = Container.container
         bulletManager = container["bulletManager"]
         sangMinManager = container["sangMinManager"]

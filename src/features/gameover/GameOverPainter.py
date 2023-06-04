@@ -7,18 +7,14 @@ from src.util.resource import *
 class GameOverPainter(Painter):
     def init(self):
         self._buttonViewList = {
-            "toMainButtonView": ButtonView() \
-                .setPos((100, 100)) \
-                .setText("toMain")
-                .setTextPos((100, 100))
-                .setScale((200, 100))
-                .setImageByPath("../res/image/player1.png"),
             "replayButtonView": ButtonView() \
-                .setPos((430, 100)) \
-                .setText("replay")
-                .setTextPos((230, 100))
-                .setScale((200, 100))
-                .setImageByPath("../res/image/player1.png")
+                .setPos((491, 679)) \
+                .setScale((457, 93))
+            .setImageByPath("../res/image/gameover_replay.png"),
+            "homeButtonView": ButtonView() \
+                .setPos((491, 795)) \
+                .setScale((457, 93))
+                .setImageByPath("../res/image/gameover_home.png")
         }
 
     def paint(self):
@@ -27,7 +23,7 @@ class GameOverPainter(Painter):
 
     def __paintBackground(self):
         screen = Container.screen
-        screen.blit(IMG_BACKGROUND, (0, 0))
+        screen.blit(IMG_GAMEOVER_BACKGROUND, (0, 0))
 
     def getButtonViewList(self):
         return self._buttonViewList

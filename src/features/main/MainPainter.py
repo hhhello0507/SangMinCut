@@ -10,14 +10,14 @@ class MainPainter(Painter):
         self._buttonViewList = {
             "playButtonView":
                 ButtonView() \
-                    .setPos((440, SCREEN_HEIGHT - 280)) \
+                    .setPos((491, 679)) \
                     .setImageByPath("../res/image/btn_play.png") \
-                    .setScale((450, 100)),
+                    .setScale((457, 93)),
             "rankingButtonView":
                 ButtonView() \
-                    .setPos((440, SCREEN_HEIGHT - 150)) \
+                    .setPos((491, 795)) \
                     .setImageByPath("../res/image/btn_ranking.png") \
-                    .setScale((450, 100))
+                    .setScale((457, 93))
         }
 
     def getButtonViewList(self):
