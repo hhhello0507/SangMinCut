@@ -1,4 +1,5 @@
 import Container
+from features.game.manager.StageManager import StageManager
 from src.entity.Player import *
 from util.painter import *
 from src.wiget.ButtonView import *
@@ -7,6 +8,8 @@ import time
 
 class GamePainter(Painter):
     def init(self):
+        from Container import container
+        player= container["player"]
         self._buttonViewList = {
             "pauseButtonView":
                 ButtonView() \
@@ -22,11 +25,10 @@ class GamePainter(Painter):
                     .setScale((457, 93)) \
                     .setImageByPath("../res/image/stage.png")
         }
-
         self._textViewList = {
             "hpTextView":
                 TextView() \
-                    .setPos((Player.xPos, Player.yPos))
+                    .setPos((player.xPos, player.yPos))
                     .setTextColor((255, 255, 0)),
             "xpTextView":
                 TextView() \
@@ -75,11 +77,12 @@ class GamePainter(Painter):
             Container.screen.blit(IMG_HP_POTION, (hpPotion.xPos, hpPotion.yPos))
 
     def __paintPlayer(self):
-        Container.screen.blit(IMG_PLAYER, (Player.xPos, Player.yPos))
+        player = Container.container['player']
+        Container.screen.blit(IMG_PLAYER, (player.xPos, player.yPos))
 
     def __paintBackground(self):
         screen = Container.screen
-        screen.blit(IMG_GAME_BACKGROUND1, (0, 0))
+        screen.blit(Container.container["stageManager"].background, (0, 0))
 
     def update(self):
         self.__updateHpBar()
@@ -87,13 +90,15 @@ class GamePainter(Painter):
         self.__updateStageBar()
 
     def __updateHpBar(self):
+        player = Container.container['player']
         hpTextView = self._textViewList["hpTextView"]
-        hpTextView.setPos((Player.xPos + 20, Player.yPos))
-        hpTextView.setText(f"{Player.playerHp} / {PLAYER_INIT_HP}")
+        hpTextView.setPos((player.xPos + 20, player.yPos))
+        hpTextView.setText(f"{player.playerHp} / {PLAYER_INIT_HP}")
 
     def __updateXpBar(self):
+        player = Container.container['player']
         xpTextView = self._textViewList["xpTextView"]
-        xpTextView.setText("*" * (int(Player.playerXp * (PLAYER_XP_TEXT_WIDTH / Player.playerMaxXp))) + "-" * (int((Player.playerMaxXp - Player.playerXp) *  (PLAYER_XP_TEXT_WIDTH / Player.playerMaxXp))))
+        xpTextView.setText("*" * (int(player.playerXp * (PLAYER_XP_TEXT_WIDTH / player.playerMaxXp))) + "-" * (int((player.playerMaxXp - player.playerXp) *  (PLAYER_XP_TEXT_WIDTH / player.playerMaxXp))))
 
     def __updateStageBar(self):
         stageManager = Container.container["stageManager"]

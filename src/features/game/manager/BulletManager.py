@@ -1,13 +1,18 @@
+import Container
+
+
 class BulletManager:
-    bulletList = []
+
+    def __init__(self):
+        self.bulletList = []
 
     def manageBullet(self):
+        bulletManager = Container.container["bulletManager"]
         for (idx, bullet) in enumerate(self.bulletList):
             if bullet.isActive:
                 bullet.move()
             else:
-                BulletManager.bulletList.pop(idx)
+                bulletManager.bulletList.pop(idx)
 
-def bulletInit():
-    BulletManager.bulletList.clear()
-
+    def init(self):
+        self.bulletList.clear()

@@ -2,31 +2,32 @@ from src.util.constants import *
 
 
 class Player:
-    xPos = None
-    yPos = None
-    playerHp = None
-    playerXp = None
-    playerMaxXp = None
-    isSpecial = None
-    isSpecialing = None
-    specialCnt = None
-    beforeSpecialTime = None
+    def __init__(self):
+        self.xPos = None
+        self.yPos = None
+        self.playerHp = None
+        self.playerXp = None
+        self.playerMaxXp = None
+        self.isSpecial = None
+        self.isSpecialing = None
+        self.specialCnt = None
+        self.beforeSpecialTime = None
 
-def playerInit():
-    Player.xPos = PLAYER_INIT_XPOS
-    Player.yPos = PLAYER_INIT_YPOS
-    Player.playerHp = PLAYER_INIT_HP
-    Player.playerXp = 0
-    Player.playerMaxXp = PLAYER_INIT_MAX_XP
-    Player.isSpecial = False
-    Player.isSpecialing = False
-    Player.specialCnt = PLAYER_SPECIAL_BULLET_SHOOT_CNT
-    Player.beforeSpecialTime = None
+    def init(self):
+        self.xPos = PLAYER_INIT_XPOS
+        self.yPos = PLAYER_INIT_YPOS
+        self.playerHp = PLAYER_INIT_HP
+        self.playerXp = 0
+        self.playerMaxXp = PLAYER_INIT_MAX_XP
+        self.isSpecial = False
+        self.isSpecialing = False
+        self.specialCnt = PLAYER_SPECIAL_BULLET_SHOOT_CNT
+        self.beforeSpecialTime = None
 
-def playerToString():
-    return f"""
-pos - {Player.xPos}, {Player.yPos}
-hp - {Player.playerHp} / {"PLAYER_INIT_HP"}
-xp - {Player.playerXp} / {Player.playerMaxXp}
-
-    """
+    def toString(self):
+        return f"""
+    pos - {self.xPos}, {self.yPos}
+    hp - {self.playerHp} / {"PLAYER_INIT_HP"}
+    xp - {self.playerXp} / {self.playerMaxXp}
+    
+        """

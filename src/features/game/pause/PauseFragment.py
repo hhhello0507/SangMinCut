@@ -2,7 +2,6 @@ import pygame
 
 import Container
 from features.game.manager.PlayerManager import initAll
-from util.lifeCycle import lifeCycleInit, LifeCycleManager
 
 
 class PauseFragment:

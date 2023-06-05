@@ -1,38 +1,45 @@
 import time
+
 from src.entity.Player import *
 from src.entity.XpPotion import *
 
 
 class XpPotionManager:
-    xpPotionList = []
-    xpLoadTime = 0
-    xpStartTime = time.time()
+
+    def __init__(self):
+        self.xpPotionList = []
+        self.xpLoadTime = 0
+        self.xpStartTime = time.time()
 
     def createXpPotion(self):
+        from Container import container
+        player = container["player"]
         now = time.time()
-        if now - XpPotionManager.xpStartTime > XpPotionManager.xpLoadTime:
-            XpPotionManager.xpStartTime = now
-            XpPotionManager.xpLoadTime = random.uniform(XP_CREATE_TIME_1, XP_CREATE_TIME_2)
+        if now - self.xpStartTime > self.xpLoadTime:
+            self.xpStartTime = now
+            self.xpLoadTime = random.uniform(XP_CREATE_TIME_1, XP_CREATE_TIME_2)
             (xpPotionXPos, xpPotionYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
             # (플레이어 <-> mp포션) 사이 일정한 거리 이상에서 생성되도록
-            while ((xpPotionXPos - Player.xPos) ** 2 + (xpPotionYPos - Player.yPos) ** 2) ** 0.5 < 300:
+            while ((xpPotionXPos - player.xPos) ** 2 + (xpPotionYPos - player.yPos) ** 2) ** 0.5 < 300:
                 (xpPotionXPos, xpPotionYPos) = (random.uniform(0, SCREEN_WIDTH), random.uniform(0, SCREEN_HEIGHT))
             xpPotion = XpPotion(xpPotionXPos + XP_POTION_WIDTH / 2, xpPotionYPos + XP_POTION_HEIGHT / 2)
-            XpPotionManager.xpPotionList.append(xpPotion)
+            self.xpPotionList.append(xpPotion)
 
     def manageXpPotion(self):
+        from Container import container
+        player = container["player"]
         activeXpPotionList = []
-        for (idx, xpPotion) in enumerate(XpPotionManager.xpPotionList):
+        for (idx, xpPotion) in enumerate(self.xpPotionList):
             # 플레이어와 충돌
-            if xpPotion.objectRect.colliderect(pygame.Rect(Player.xPos, Player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
+            if xpPotion.objectRect.colliderect(pygame.Rect(player.xPos, player.yPos, PLAYER_WIDTH, PLAYER_HEIGHT)):
                 xpPotion.isActive = False
-                Player.playerXp += xpPotion.xp
-                print("PlayerXP : +%d" % (Player.playerXp))
+                player.playerXp += xpPotion.xp
+                print("PlayerXP : +%d" % (player.playerXp))
             if xpPotion.isActive:
                 activeXpPotionList.append(xpPotion)
-        XpPotionManager.xpPotionList = activeXpPotionList
+        self.xpPotionList = activeXpPotionList
 
-def xpPotionInit():
-    XpPotionManager.xpPotionList.clear()
-    XpPotionManager.xpLoadTime = 0
-    XpPotionManager.xpStartTime = time.time()
+    def init(self):
+        self.xpPotionList.clear()
+        self.xpLoadTime = 0
+        self.xpStartTime = time.time()

@@ -1,3 +1,5 @@
+from features.game.manager.BulletManager import BulletManager
+from features.game.manager.SangMinManager import SangMinManager
 from src.features.gameover.GameOverPainter import GameOverPainter
 from src.features.game.manager.HoJoonManager import HoJoonManager
 from src.features.game.manager.HpPotionManager import HpPotionManager

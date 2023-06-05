@@ -1,8 +1,6 @@
 import random
 import math
 
-import Container
-from entity.Player import playerToString
 from src.util.constants import *
 
 SCREEN_WIDTH = 1440
@@ -41,20 +39,3 @@ def isObjectInMap(object):
 def adasd(degree):
     return normalized(1, math.tan(math.radians(degree)))
 
-def printStatus():
-    lifeCycleManager = Container.container["lifeCycleManager"]
-    bulletManager = Container.container["bulletManager"]
-    sangMinManager = Container.container["sangMinManager"]
-
-    print(f"""
--------------------------------------
-isMain:  {lifeCycleManager.isMainActivity}
-isPlaying: {lifeCycleManager.isGameActivity}
-isPause: {lifeCycleManager.isPause}
-isSetting: {lifeCycleManager.isPause}
-
-player: {playerToString()}
-bullets: {bulletManager.bulletList}
-sangMins: {sangMinManager.sangMinList}
--------------------------------------
-""")

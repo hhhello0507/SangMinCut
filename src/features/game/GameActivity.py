@@ -1,3 +1,5 @@
+import time
+
 from features.game.pause.PauseFragment import *
 from features.game.manager.PlayerManager import *
 
@@ -11,13 +13,16 @@ class GameActivity:
         self.__buttonList = self.__gamePainter.getButtonViewList()
 
     def createBullet(self):
+        from Container import container
+        player = container["player"]
+        bulletManager = container["bulletManager"]
         (xMousePos, yMousePos) = pygame.mouse.get_pos()
-        (normalizedXPos, normalizedYPos) = normalized(Player.xPos + PLAYER_WIDTH / 2 - xMousePos,
-                                                                   Player.yPos + PLAYER_HEIGHT / 2 - yMousePos)
-        bullet = Bullet(Player.xPos + PLAYER_WIDTH / 2, Player.yPos + PLAYER_HEIGHT / 2,
+        (normalizedXPos, normalizedYPos) = normalized(player.xPos + PLAYER_WIDTH / 2 - xMousePos,
+                                                                   player.yPos + PLAYER_HEIGHT / 2 - yMousePos)
+        bullet = Bullet(player.xPos + PLAYER_WIDTH / 2, player.yPos + PLAYER_HEIGHT / 2,
                         -normalizedXPos * BULLET_SPEED,
                         -normalizedYPos * BULLET_SPEED)
-        BulletManager.bulletList.append(bullet)
+        bulletManager.bulletList.append(bullet)
 
     def onMouseClick(self):
         settingButtonView = self.__buttonList["pauseButtonView"]
@@ -30,33 +35,36 @@ class GameActivity:
                     lifeCycleManager.isPauseFragment = True
                     settingFragment = PauseFragment()
                     settingFragment.startPause()
-            if event.type == pygame.QUIT:
-                pygame.quit()
 
     def onKeyClick(self):
+        from Container import container
+        player = container["player"]
         deltaTime = pygame.time.Clock().tick(DEFAULT_FRAME)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-            if 0 <= Player.xPos - PLAYER_SPEED:
-                Player.xPos -= PLAYER_SPEED * deltaTime
+            if 0 <= player.xPos - PLAYER_SPEED:
+                player.xPos -= PLAYER_SPEED * deltaTime
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-            if Player.xPos + PLAYER_SPEED <= SCREEN_WIDTH - PLAYER_WIDTH:
-                Player.xPos += PLAYER_SPEED * deltaTime
+            if player.xPos + PLAYER_SPEED <= SCREEN_WIDTH - PLAYER_WIDTH:
+                player.xPos += PLAYER_SPEED * deltaTime
         if keys[pygame.K_UP] or keys[pygame.K_w]:
-            if 0 <= Player.yPos - PLAYER_SPEED:
-                Player.yPos -= PLAYER_SPEED * deltaTime
+            if 0 <= player.yPos - PLAYER_SPEED:
+                player.yPos -= PLAYER_SPEED * deltaTime
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
-            if Player.yPos + PLAYER_SPEED <= SCREEN_HEIGHT - PLAYER_HEIGHT:
-                Player.yPos += PLAYER_SPEED * deltaTime
+            if player.yPos + PLAYER_SPEED <= SCREEN_HEIGHT - PLAYER_HEIGHT:
+                player.yPos += PLAYER_SPEED * deltaTime
         if keys[pygame.K_SPACE]:
             self.createBullet()
         if keys[pygame.K_r]:
-            if Player.isSpecial:
-                if not Player.isSpecialing:
-                    Player.beforeSpecialTime = time.time()
-                    Player.isSpecialing = True
-                    Player.playerMaxXp = int(Player.playerMaxXp * 1.2)
-                    Player.playerXp = 0
+            if player.isSpecial:
+                if not player.isSpecialing:
+                    player.beforeSpecialTime = time.time()
+                    player.isSpecialing = True
+                    player.playerMaxXp = int(player.playerMaxXp * 1.2)
+                    player.playerXp = 0
+        if keys[pygame.K_ESCAPE]:
+            pygame.quit()
+
 
     def startGame(self):
         # self.init()

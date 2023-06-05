@@ -1,5 +1,4 @@
 import Container
-from src.entity.Player import playerInit
 from src.util.lifeCycle import *
 import pygame
 
@@ -15,6 +14,8 @@ class MainActivity:
         startButton = self.__buttonViewList["playButtonView"]
         lifeCycleManager = Container.container["lifeCycleManager"]
         gameActivity = Container.container["gameActivity"]
+        stageManager = Container.container["stageManager"]
+        player = Container.container["player"]
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousePos = pygame.mouse.get_pos()
@@ -22,11 +23,9 @@ class MainActivity:
                     lifeCycleManager.isMainActivity = False
                     lifeCycleManager.isGameActivity = True
                     lifeCycleManager.isPause = False
-                    playerInit()
+                    player.init()
                     gameActivity.init()
-            if event.type == pygame.QUIT:
-                pygame.quit()
-
+                    stageManager.init()
     def startMain(self):
         lifeCycleManager = Container.container["lifeCycleManager"]
         if lifeCycleManager.isMainActivity:

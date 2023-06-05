@@ -1,53 +1,48 @@
-from features.game.manager.BladeManager import BladeManager, bladeInit
-from features.game.manager.GalManager import GalManager, galInit
-from features.game.manager.HoJoonManager import HoJoonManager, hoJoonInit
-from features.game.manager.HpPotionManager import HpPotionManager, hpPotionInit
-from features.game.manager.StageManager import *
-from features.game.manager.XpPotionManager import XpPotionManager, xpPotionInit
 from src.entity.Bullet import *
-from util.lifeCycle import lifeCycleInit
-
 
 class PlayerManager:
     def managePlayer(self):
-        if Player.playerHp <= 0:
-            lifeCycleManager = Container.container["lifeCycleManager"]
+        from Container import container
+
+        player = container["player"]
+        if player.playerHp <= 0:
+            lifeCycleManager = container["lifeCycleManager"]
             initAll()
             lifeCycleManager.isMainActivity = False
             lifeCycleManager.isGameActivity = False
             lifeCycleManager.isPause = True
             lifeCycleManager.isGameOverActivity = True
 
-        if Player.playerHp > PLAYER_INIT_HP:
-            Player.playerHp = PLAYER_INIT_HP
-        if Player.playerXp >= Player.playerMaxXp:
-            Player.playerXp = Player.playerMaxXp
-            Player.isSpecial = True
-        if Player.isSpecialing:
+        if player.playerHp > PLAYER_INIT_HP:
+            player.playerHp = PLAYER_INIT_HP
+        if player.playerXp >= player.playerMaxXp:
+            player.playerXp = player.playerMaxXp
+            player.isSpecial = True
+        if player.isSpecialing:
             now = time.time()
-            if Player.specialCnt > 0:
-                if now - Player.beforeSpecialTime > 0.5:
-                    Player.specialCnt -= 1
+            if player.specialCnt > 0:
+                if now - player.beforeSpecialTime > 0.5:
+                    player.specialCnt -= 1
                     for idx in range(PLAYER_SPECIAL_BULLETS_CNT):
-                        Player.beforeSpecialTime = now
-                        bullet = Bullet(Player.xPos, Player.yPos, PLAYER_SPECIAL_BULLET_DEGREE[idx][0] * BULLET_SPEED,
+                        player.beforeSpecialTime = now
+                        bullet = Bullet(player.xPos, player.yPos, PLAYER_SPECIAL_BULLET_DEGREE[idx][0] * BULLET_SPEED,
                                         PLAYER_SPECIAL_BULLET_DEGREE[idx][1] * BULLET_SPEED)
-                        BulletManager.bulletList.append(bullet)
+                        container["bulletManager"].bulletList.append(bullet)
             else:
-                Player.specialCnt = PLAYER_SPECIAL_BULLET_SHOOT_CNT
-                Player.isSpecialing = False
-                Player.isSpecial = False
+                player.specialCnt = PLAYER_SPECIAL_BULLET_SHOOT_CNT
+                player.isSpecialing = False
+                player.isSpecial = False
 
 def initAll():
-    gameOverActivity = Container.container["gameOverActivity"]
-    gameOverActivity.init()
-    lifeCycleInit()
-    playerInit()
-    bulletInit()
-    sangMinInit()
-    stageInit()
-    bladeInit()
-    galInit()
-    hoJoonInit()
-    hpPotionInit()
-    xpPotionInit()
+    from Container import container
+    container["gameOverActivity"].init()
+    container["lifeCycleManager"].init()
+    container["player"].init()
+    container["bulletManager"].init()
+    container["sangMinManager"].init()
+    container["bladeManager"].init()
+    container["stageManager"].init()
+    container["galManager"].init()
+    container["hoJoonManager"].init()
+    container["hpPotionManager"].init()
+    container["xpPotionManager"].init()

@@ -7,6 +7,18 @@ IMG_MAIN_BACKGROUND = pygame.transform.scale(IMG_MAIN_BACKGROUND, (SCREEN_WIDTH,
 IMG_GAME_BACKGROUND1 = pygame.image.load("../res/image/game_background1.png")
 IMG_GAME_BACKGROUND1 = pygame.transform.scale(IMG_GAME_BACKGROUND1, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
+IMG_GAME_BACKGROUND2 = pygame.image.load("../res/image/game_background2.png")
+IMG_GAME_BACKGROUND2 = pygame.transform.scale(IMG_GAME_BACKGROUND2, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
+IMG_GAME_BACKGROUND3 = pygame.image.load("../res/image/game_background3.png")
+IMG_GAME_BACKGROUND3 = pygame.transform.scale(IMG_GAME_BACKGROUND3, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
+IMG_GAME_BACKGROUND4 = pygame.image.load("../res/image/game_background4.png")
+IMG_GAME_BACKGROUND4 = pygame.transform.scale(IMG_GAME_BACKGROUND4, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
+IMG_GAME_BACKGROUND5 = pygame.image.load("../res/image/game_background5.png")
+IMG_GAME_BACKGROUND5 = pygame.transform.scale(IMG_GAME_BACKGROUND5, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
 IMG_GAMEOVER_BACKGROUND = pygame.image.load("../res/image/gameover_background.png")
 IMG_GAMEOVER_BACKGROUND = pygame.transform.scale(IMG_GAMEOVER_BACKGROUND, (SCREEN_WIDTH, SCREEN_HEIGHT))
 

@@ -1,10 +1,16 @@
+import Container
+
+
 class BladeManager:
-    bladeList = []
 
-
+    def __init__(self):
+        self.bladeList = []
 
     def manageBlade(self):
+        self.__updateBlade()
+
+    def __updateBlade(self):
         pass
 
-def bladeInit():
-    BladeManager.bladeList.clear()
+    def init(self):
+        self.bladeList.clear()

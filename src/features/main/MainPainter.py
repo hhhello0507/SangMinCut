@@ -28,5 +28,5 @@ class MainPainter(Painter):
         super().paint()
 
     def __paintBackground(self):
-        screen = Container.screen
+        from Container import screen
         screen.blit(IMG_MAIN_BACKGROUND, (0, 0))
