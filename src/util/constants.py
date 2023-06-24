@@ -1,10 +1,13 @@
 from math import *
 
-from src.util.utils import *
+from circleRotate import normalized
 
 DEFAULT_FRAME = 200
 
 # init
+# SCREEN_WIDTH = 1440
+# SCREEN_HEIGHT = 960
+
 SCREEN_WIDTH = 1440
 SCREEN_HEIGHT = 960
 

@@ -103,3 +103,4 @@ class GameActivity:
                 self.__gamePainter.paint()
                 self.__gamePainter.update()
                 Container.display.update()
+                # Container.display.set
